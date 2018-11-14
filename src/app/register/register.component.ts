@@ -38,12 +38,10 @@ export class RegisterComponent implements OnInit {
 
   confpass : '';
 
-  RegEstadoMsg : boolean = false;
+  RegEstadoMsg : number = 0;
+  msgForm1 : boolean = false;
 
   rubros: any;
-
-  @ViewChild("inptUser") inpUser: ElementRef;
-  @ViewChild("inptPass") inpPass: ElementRef;
 
   constructor(private router: Router, private app:ControllerService) { 
     this.app.getAllRubros().subscribe(
@@ -65,12 +63,7 @@ export class RegisterComponent implements OnInit {
     autocomplete = new google.maps.places.Autocomplete(input, options);
 
     autocomplete.addListener('place_changed', function() {
-      console.log('Autocomplete dentro: '+autocomplete);
-  
-      var place = autocomplete.getPlace();0
-  
-      console.log('Nuevo place');
-      
+      var place = autocomplete.getPlace();
       ubicacion.Direccion = place.formatted_address;
       ubicacion.lat = place.geometry.location.lat().toString();
       ubicacion.lng = place.geometry.location.lng().toString();
@@ -88,6 +81,8 @@ export class RegisterComponent implements OnInit {
 
       var div2 = document.getElementById('divDatosUsuario');
       div2.style.display = 'block';
+    }else{
+      this.msgForm1 = true;
     }
   }
 
@@ -105,7 +100,7 @@ export class RegisterComponent implements OnInit {
     this.formEmp.Rut = this.auxRUT.toString();
     console.log(this.formEmp);
 
-    if(true){
+    if(this.validUser()){
       this.app.RegistrarEmpresa(this.formEmp).subscribe(
         data => {
           console.log(data);
@@ -118,7 +113,7 @@ export class RegisterComponent implements OnInit {
           }
         },
         error => {
-          this.RegEstadoMsg = true;
+          this.RegEstadoMsg = 3;
         }
       );
     }
@@ -136,42 +131,27 @@ export class RegisterComponent implements OnInit {
   }
 
   validUser(){
-    // var aux = true;
-
-    // if(this.auxPass==''){
-    //   this.renderer.setAttribute(this.inpUser.nativeElement, 'placeholder', 'Campo Requerido');
-    //   this.renderer.addClass(this.inpUser.nativeElement, 'require');
-    //   aux = false;
-    // }else{
-    //   this.renderer.setAttribute(this.inpUser.nativeElement, 'placeholder', '');
-    //   this.renderer.removeClass(this.inpUser.nativeElement, 'require');
-    // }
-
-    // if(this.confpass=='' || this.auxPass==''){
-    //   this.formEmp.Pass = '';
-    //   this.confpass = '';
-    //   this.auxPass = '';
-
-    //   this.renderer.setAttribute(this.inpPass.nativeElement, 'placeholder', 'Contraseña requerida');
-    //   this.renderer.addClass(this.inpPass.nativeElement, 'require');
-    //   aux = false;
-    // }else if(this.confpass!=this.auxPass){
-    //   this.formEmp.Pass = '';
-    //   this.confpass = '';
-
-    //   this.renderer.setAttribute(this.inpPass.nativeElement, 'placeholder', 'No coinciden');
-    //   this.renderer.addClass(this.inpPass.nativeElement, 'require');
-    //   aux = false;
-    // }else if(this.confpass == this.auxPass){
-    //   this.formEmp.Pass = this.SHA256(this.auxPass);
-    //   return true;
-    // }
-    // else{
-    //   this.renderer.setAttribute(this.inpPass.nativeElement, 'placeholder', '');
-    //   this.renderer.removeClass(this.inpPass.nativeElement, 'require');
-    // }
-
-    // return aux;
+    var elements = document.getElementsByName('elementForm2');
+    var aux;
+    var valid = true;
+    for(let x=0;x<elements.length;x++){
+      aux = elements[x];
+      if(aux.value==''){
+        aux.setAttribute('class', 'require');
+        valid = false;
+      }else{
+        aux.removeAttribute('class', 'require');
+      }
+    }
+    if(!valid){
+      this.RegEstadoMsg = 1;
+    }else{
+      if(elements[2]!=elements[3]){
+        this.RegEstadoMsg = 2;
+        return false;
+      }
+    }
+    return valid;
   }
 
   validForm(){
@@ -183,6 +163,8 @@ export class RegisterComponent implements OnInit {
       if(aux.value==''){
         aux.setAttribute('class', 'require');
         valid = false;
+      }else{
+        aux.removeAttribute('class', 'require');
       }
     }
     return valid;

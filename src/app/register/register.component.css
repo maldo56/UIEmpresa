@@ -105,6 +105,13 @@
     width: 100%;
     height: 8%;
     float : left;
+    text-align: center;
+}
+
+#formdiv3 h2{
+    margin-top: 2%;
+    font-size: 25px;
+    color: red;
 }
 
 #formdiv3 button{
