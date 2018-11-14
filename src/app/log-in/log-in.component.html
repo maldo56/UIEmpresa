@@ -1,0 +1,22 @@
+<div id="loginContainer">
+    <div id="loginTitle">
+        <h2>Autenticarse:</h2>
+    </div>
+    <div id="formContainer">
+        <div id="loginform">
+            <label>Usuario:</label> <br>
+            <input id="loginUser" [(ngModel)]="formLogIn.user" type="text">
+            <br>
+            <label>Contraseña:</label> <br>
+            <input id="loginPass" [(ngModel)]="auxPass" type="password">
+            <div id="contBoton">
+                <div id="contMsg">
+                    <h2 *ngIf="msgFailed">Usuario o contraseña incorrectos</h2>
+                    <h2 *ngIf="msgError">Error al conectarse con el servidor</h2>
+                </div>
+                <button type="submit" routerLink="/Register">Registrarse</button>
+                <button type="submit" (click)="logIn();">Iniciar sesion</button>
+            </div>
+        </div>
+    </div>
+</div>

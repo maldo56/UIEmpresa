@@ -1,0 +1,50 @@
+<div id="container">
+  <div id="titulo">
+      <h2>Administrar zonas de entrega:</h2>
+  </div>
+  <div id="contBarSup">
+    <div id="pestañas">
+    </div>
+  </div>
+
+  <div id="ZEAgregar" *ngIf="pest==1">
+    <div id="AgregarDiv1">
+      <div id="FormAgregarCont">
+        <div id="map">
+
+        </div>
+        <!-- <agm-map [latitude]="ubicacion.lat" [longitude]="ubicacion.lng" [zoom]=15 (mapClick)="setCenter($event)">
+          <agm-marker [latitude]="ubicacion.lat" [longitude]="ubicacion.lng"></agm-marker>
+          
+        </agm-map> -->
+      </div>
+      <!-- <div id="TablaZonas">
+        <table>
+          <tr *ngIf="zonas.length>0"><th>Id</th> <th>Latitud</th> <th>Longitud</th> <th>Radio</th></tr>
+          <tr *ngFor="let z of zonas; let i = index">
+            <td>{{i}}</td>
+            <td>{{z.Lat}}</td>
+            <td>{{z.Lng}}</td>
+            <td>{{z.Radio}}</td>
+            <td> <button (click)="eliminarZona(i)">-</button> </td>
+          </tr>
+        </table>
+      </div> -->
+      <div id="AgregarMsg">
+        <h1 *ngIf="AgregarMsg==1">No se pudo agregar el producto</h1>
+        <h2 *ngIf="AgregarMsg==2">Producto agregado con exito</h2>
+        <h1 *ngIf="AgregarMsg==3">Error al conectarse con el servidor</h1>
+      </div>
+      <div id="DivBtn">
+        <button (click)="aceptarCambiosZona()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function asdasd(){
+    console.log("asadasd");
+}
+</script>

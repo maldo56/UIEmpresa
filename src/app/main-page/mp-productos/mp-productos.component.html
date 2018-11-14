@@ -1,0 +1,109 @@
+<div id="container">
+  <div id="titulo">
+      <h2>Administrar productos:</h2>
+  </div>
+  <div id="contBarSup">
+    <div id="pestañas">
+      <a (click)="changeP('p1');">Agregar</a>
+      <a (click)="changeP('p2');">Modificar</a>
+      <a (click)="changeP('p3');">Eliminar</a>
+    </div>
+  </div>
+
+  <div id="Agregar" *ngIf="pest==1">
+    <div id="AgregarCont">
+      <label>Nombre: <input type="text" [(ngModel)]="producto.Nombre" /></label> <br>
+      <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"><option value="1">$</option><option value="2">U$S</option></select></div> </label> <br>
+      <label>Volumen (m<SUP>3</SUP>): <input type="number" min="0" [(ngModel)]="producto.Volumen"/></label> <br>
+      <label>Peso (kg): <input type="number" min="0" [(ngModel)]="producto.Peso"></label> <br>
+      <label>Descripcion: <textarea rows="3" cols="25" [(ngModel)]="producto.Descripcion"></textarea></label> <br>
+      
+      <label>Categoria: <table id="tableAgregtarCategoria"> 
+                          <tr *ngFor="let c of auxAgregarCategorias; let i of index"> <td> <button (click)="addCategoriaAProducto(i)">+</button> </td> <td>{{c.Nombre}}</td> </tr>
+                          <br><tr><td><button *ngIf="anterior" (click)="pageAnterior()"><</button><td><button *ngIf="siguiente" (click)="pageSiguiente()">></button></td></tr>
+                        </table> </label>
+      
+      <label><h1 *ngFor="let c of producto.Categorias">{{c.value}}-</h1> </label>
+
+      <div id="agrregarOpcionales">
+        <label>Agregar atributos opcionales: </label>
+        
+        <div id="OpcionalesCont">
+          <table>
+            <tr *ngIf="producto.Opcionales.length > 0"> <th>Nombre</th> <th>Valor</th> </tr>
+            <tr *ngFor="let c of producto.Opcionales"> <td>{{c.key}}</td> <td>{{c.value}}</td> </tr>
+          </table>
+        </div>
+        <label><input type="text" placeholder="Nombre atributo" [(ngModel)]="auxKey"/>
+          <input type="text" placeholder="Valor atributo" [(ngModel)]="auxValue"/>
+          <button (click)="addOpcionalAtributteRow()">Agregar</button>
+        </label>
+      </div>
+
+      <div id="agregarImagenes">
+        <div id="imgListCont">
+          <div *ngFor="let c of producto.Imagenes; let i = index">
+            <img src="{{c}}"/>
+          </div>
+        </div>
+        <div id="newImgCont">
+          <div id="divImg">
+            <img src="{{ImgActual}}"/>
+          </div>
+          <div id="divForm">
+            <input type="file" (change)="selectImg($event)" /> <br>
+            <button (click)="agregarImgBuffer()">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="AgregarMsg">
+        <h1 *ngIf="AgregarMsg==1">No se pudo agregar el producto</h1>
+        <h2 *ngIf="AgregarMsg==2">Producto agregado con exito</h2>
+        <h1 *ngIf="AgregarMsg==3">Error al conectarse con el servidor</h1>
+      </div>
+      
+    </div>
+    <div id="btnCont">
+      <button (click)="agregarProducto()">Aceptar</button>
+    </div>
+  </div>
+
+  <div id="Modificar" *ngIf="pest==2">
+    <div id="ModificarCont">
+        <label style="font-size: 25px">Seleccione un producto: </label> <br>
+      <table>
+          <tr> <th>Nombre</th> <th>Descripcion</th> </tr>
+      </table>
+      <table id="ModificarListTable">
+        <tr *ngFor="let p of productosList; let i = index" (click)="cargarUpdate(i)"> <td>{{p.PropProducto.Nombre}}</td> <td>{{p.PropProducto.Descripcion}}</td> </tr>
+      </table>
+    </div>
+    <div id="ListarDatosCont" *ngIf="selected">
+      <div id="ListarDatos">
+        <table>
+          <tr *ngFor="let t of auxAttObligatorios; let i = index"> 
+            <td> <label> {{t.key}} </label> </td> 
+            <td> <input type="text" [(ngModel)]="auxAttObligatorios[i].value"/> </td> </tr>
+          <tr *ngFor="let t of auxAttOpcionales; let i = index">
+            <td> <input type="text" [(ngModel)]="auxAttOpcionales[i].key" /> </td> 
+            <td> <input type="text" [(ngModel)]="auxAttOpcionales[i].value" /> </td> </tr>
+          <tr> <td> <input type="text" [(ngModel)]="updateauxKey" placeholder="Nombre nuevo atributo" /> </td> 
+            <td><input type="text" [(ngModel)]="updateauxValue" placeholder="Valor nuevo atributo" />
+            <button (click)="updateAddAtributte()">+</button></td></tr>
+        </table>
+
+        <div> 
+          
+        </div>
+        <table>
+        
+        </table>
+
+      </div>
+      <div id="btnModificarCont">
+        <button>Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

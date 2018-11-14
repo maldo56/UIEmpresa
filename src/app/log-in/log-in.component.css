@@ -1,0 +1,107 @@
+#loginContainer {
+    width: 50%;
+    /* height: 50%; */
+
+    max-width: 550px;
+    max-height: 500px;
+
+    min-width: 220px;
+    min-height: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: auto;
+
+    border: solid black 1px;
+    /* border-radius: 30px; */
+}
+
+#loginTitle{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loginTitle h2{
+    font-size: 70px;
+}
+
+#formContainer{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#loginform {
+    width: 100%;
+}
+
+#loginform label {
+    margin-top: 8%;
+    font-size: 25px;
+}
+
+#loginform input {
+    font-size: 25px;
+    width: 100%;
+    /* border-radius: 5px; */
+}
+
+#contMsg {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+}
+
+#contMsg h2{
+    margin: 0px;
+    width: 90%;
+    padding-top: 15px;
+
+    font-size: 23px;
+    color: red;
+}
+
+#contBoton {
+    width: 100%;
+    padding-bottom: 10%;
+    margin-top: 1%;
+}
+
+#contBoton button{
+    width: 45%;
+    height: 10%;
+    margin-left: 1%;
+    font-size: 150%;
+    /* border-radius: 5px; */
+}
+
+@media screen and (max-width: 850px) {
+    #loginTitle h2{
+        font-size: 40px;
+    }
+
+    #loginform label {
+        font-size: 20px;
+    }
+    
+    #loginform input {
+        font-size: 20px;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    #loginTitle h2{
+        font-size: 30px;
+    }
+
+    #loginform label {
+        font-size: 15px;
+    }
+    
+    #loginform input {
+        font-size: 15px;
+        width: 80%;
+    }
+}

@@ -1,0 +1,60 @@
+<div id="registerContainer">
+  <div id="registerTitle">
+    <h2>Registra tu empresa!:</h2>
+  </div>
+  <div id="formContainer">
+    <div id="formdiv1">
+      <label>RUT: <input name="elementForm1" [(ngModel)]="auxRUT" type="number"/></label>
+      <label>Nombre: <input name="elementForm1" [(ngModel)]="formEmp.Nombre" #inpNombre type="text"/></label>
+      <label>URL: <input name="elementForm1" [(ngModel)]="formEmp.URLocator" #inpURL type="text"/></label>
+      <label>Rubro: <select name="elementForm1" [(ngModel)]="formEmp.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label>
+      <label>Direccion: <input name="elementForm1" id="form1Direccion" [(ngModel)]="formEmp.Direccion"  #inpDir type="text" autocorrect="off" autocapitalize="off" spellcheck="off"/></label>
+      <label>Descripcion: <textarea name="elementForm1" [(ngModel)]="formEmp.Descripcion" rows="3" cols="25"></textarea></label>
+    </div>
+    <div id="formdiv2">
+      <div id="divimg">
+        <img id="Image" src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #Img/>
+      </div>
+      <div id="divinpfile">
+        <label>Sube tu logo!:</label>
+        <input (change)="selectImg($event)" type="file" class="inptselect"/>
+      </div>
+    </div>
+    <div id="formdiv3">
+      <button type="submit" (click)="siguiente()">Registrate</button>
+    </div>
+  </div>
+
+  <div id="divDatosUsuario">
+    <div id="userTitle">
+      <h2>Crea tu usuario administrador:</h2>
+    </div>
+    <div id="tableuserCont">
+      <table id="userTable">
+          <tr>
+              <td>Nombre:</td>
+              <td> <input [(ngModel)]="formEmp.UserName" #inptUser type="text"/> </td>
+            </tr>
+        <tr>
+          <td>Usuario:</td>
+          <td> <input [(ngModel)]="formEmp.User" #inptUser type="text"/> </td>
+        </tr>
+        <tr>
+          <td>Contraseña:</td>
+          <td> <input [(ngModel)]="auxPass" #inptPass type="password"/> </td>
+        </tr>
+        <tr>
+          <td>Repetir contraseña:</td>
+          <td> <input [(ngModel)]="confpass" #inptPass type="password"/> </td>
+        </tr>
+      </table>
+    </div>
+    <div id="userBtn">
+      <div id="contMsg">
+        <h2 *ngIf="RegEstadoMsg">Error al conectarse con el servidor</h2>
+      </div>
+      <button routerLink="/LogIn" (click)="cancelar()">Cancelar</button>
+      <button (click)="enviarDatos()">Registrate</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div id="contenedor">
+  <div id="contNav">
+    <div id="DatosPerfil">
+      <div id="divImg">
+        <img src="" #Img/><br>
+      </div>
+      <div id="contInfo">
+        <label>RUT: {{session.Rut}}</label> <br>
+        <label>Nombre: {{session.Nombre}}</label> <br>
+        <label>Rubro: {{session.NombreRubro}}</label>
+      </div>
+    </div>
+    <div id="contMenu">
+      <ul id="Menu">
+        <li><a href="/mainPage/EditarPerfil">Actualizar perfil</a></li>
+        <li><a href="/mainPage/Categorias">Categorias</a></li>
+        <li><a href="/mainPage/Estados">Estados</a></li>
+        <li><a href="/mainPage/Paquetes">Paquetes</a></li>
+        <li><a href="/mainPage/Productos">Productos</a></li>
+        <li><a href="/mainPage/ZonasEntrega">Zona de entrega</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="contComp">
+      <router-outlet></router-outlet>
+  </div>
+</div>
+
+  <!-- <div id="DatosPerfil"> -->
+    
+    <!-- <div>
+      Actualizar empresa (geograficos tambien)
+      Desactivar empresa
+      Agregar categoria
+      Estado(Agregar, Actualizar, Listar, borrar)
+      Paquete(Agregar, Actualizar,listar, borrar)
+      zona (agregar modificar)
+    </div> -->
+
+      <!--
+          <div id="divImg">
+          <img src="" #Img/><br>
+      </div>
+      <div id="contInfo">
+        <label>RUT: {{session.Rut}}</label> <br>
+        <label>Nombre: {{session.Nombre}}</label> <br>
+        <label>Rubro: {{session.NombreRubro}}</label>
+      </div>
+  </div> -->
+
+  <!-- <div id="fondoMenu" class="default"></div> -->
+  
+  <!-- <div id="listMenu" class="default">
+    <a (click)="redirect('EditarPerfil')">Editar Perfil</a>
+  </div>
+  <div id="contComp">
+    <router-outlet></router-outlet>
+  </div> -->

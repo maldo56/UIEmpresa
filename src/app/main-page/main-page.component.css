@@ -1,0 +1,98 @@
+#contenedor {
+    width: 80%;
+    height: 1024px;
+
+    border: solid black 1px;
+
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-clip: red;
+}
+
+#contNav {
+    width: 25%;
+    height: auto;
+    margin-top: 2%;
+
+    position: sticky;
+    top: 25px;
+
+    float: left;
+
+    /* border: 1px black solid; */
+}
+
+#DatosPerfil {
+    width: 85%;
+
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+#divImg{
+    width: 95%;
+    margin-left: 5%;
+    padding-bottom: 2%;
+}
+
+#divImg img{
+    width: 220px;
+    height: 220px;
+    margin-right: auto;
+}
+
+#contInfo {
+    margin-top: 4%;
+    width: 95%;
+    margin-left: 5%;
+}
+
+#contInfo label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 140%;
+}
+
+#contMenu {
+    width: 85%;
+
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+#Menu {
+    padding: 0;
+    margin-left: 5%;
+    list-style-type: none;
+}
+
+#Menu li{
+    font-size: 160%;
+    border: 1px solid black;
+}
+
+#Menu a{
+    color: black;
+}
+
+#Menu a:active {
+    text-decoration: none; 
+    color: blue;
+}
+
+#Menu a:hover{
+    color: brown;  
+    text-decoration: none;
+}
+
+#contComp {
+    width: 70%;
+    height: auto;
+
+    margin-right: 5%;
+    margin-top: 2%;
+    float: right;
+
+    /* border: 1px solid black; */
+}

@@ -1,0 +1,189 @@
+#container{
+    width: 100%;
+}
+
+#contBarSup {
+    height: 40px;
+    width: 100%;
+
+    margin-bottom: 1%;
+    /* border: 1px solid black; */
+}
+
+#titulo {
+    width: 100%;
+    height: 100%;
+
+    padding-left: 5%;
+    /* border-bottom: 1px solid black; */
+}
+
+#titulo h2 {
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 0;
+    font-size: 300%;
+}
+
+#pestañas {
+    width: 100%;
+    height: 100%;
+    padding-left: 6%;
+
+    border: 1px solid black;
+}
+
+#pestañas a{
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+    color: black;
+
+    /* border: 1px solid black; */
+}
+
+#pestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+
+#Agregar {
+    width: 100%;
+    padding-left: 5%;
+}
+
+#AgregarCont {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#AgregarCont label{
+    font-size: 140%;
+    margin-top: 4%;
+    width: 80%;
+    /* float: right; */
+    height: 15%;
+}
+
+#AgregarCont input{
+    font-size: 100%;
+    margin-right: 5%;
+    width: 50%;
+    float: right;
+    height: 50%;
+}
+
+#AgregarCont button {
+    width: 100px;
+    height: 30px;
+    margin-top: 3%;
+    margin-right: 20%;
+    float: right;
+}
+
+#AgregarMsg{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#AgregarMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#AgregarMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}
+
+/* -------------------------------------------------- */
+
+#EstadoModificar {
+    width: 100%;
+    padding-left: 5%;
+}
+
+#EstadoModificarCont {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+#EstadoModificarCont table {
+    width: 80%;
+    font-size: 22px;
+    margin-left: 5%;
+}
+
+#EstadoModificarCont tr:hover {
+    color: darkorange;
+    text-decoration: darkorange;
+}
+
+#contBtnNext {
+    width: 80%;
+
+}
+
+#contBtnNext button {
+    width: 80px;
+    height: 25px;
+    margin-right: 5%;
+
+    float: right;
+}
+
+#estadoUpForm {
+    width: 80%;
+    margin-top: 8%;
+    margin-left: 5%;
+}
+
+#estadoUpForm label {
+    font-size: 140%;
+    margin-top: 4%;
+    width: 100%;
+    /* float: right; */
+    height: 15%;
+}
+
+#estadoUpForm input {
+    font-size: 100%;
+    margin-right: 5%;
+    width: 50%;
+    float: right;
+    height: 50%;
+}
+
+#estadoUpForm button {
+    float: right;
+    margin-right: 5%;
+}
+
+#EstadoModificarMsg{
+    height: 30px;
+    margin-top: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+#EstadoModificarMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#EstadoModificarMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}

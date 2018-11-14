@@ -1,0 +1,22 @@
+<div id="container">
+  <div id="titulo">
+      <h2>Administrar paquetes:</h2>
+  </div>
+  <div id="contBarSup">
+    <div id="pestañas">
+      <a>Agregar</a>
+    </div>
+  </div>
+  <div id="PaqueteAgregar">
+    <div id="PaqueteAgregarCont">
+      <label>Volumen maximo (m<SUP>3</SUP>): <input type="number" min="0" [(ngModel)]="paquete.Tamanio"/></label> <br>
+      <label>Peso maximo (kg): <input type="number" min="0" [(ngModel)]="paquete.Peso"/></label>
+      <div id="PaqueteAgregarMsg">
+        <h1 *ngIf="PaqueteAgregarMsg==1">El paquete ya existe</h1>
+        <h2 *ngIf="PaqueteAgregarMsg==2">Paquete agregado con exito</h2>
+        <h1 *ngIf="PaqueteAgregarMsg==3">Error al conectarse con el servidor</h1>
+      </div>
+      <button (click)="agregarPaquete()">Aceptar</button>
+    </div>
+  </div>
+</div>

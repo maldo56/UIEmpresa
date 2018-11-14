@@ -1,0 +1,107 @@
+#container{
+    width: 100%;
+}
+
+#contBarSup {
+    height: 40px;
+    width: 100%;
+
+    margin-bottom: 1%;
+    /* border: 1px solid black; */
+}
+
+#titulo {
+    width: 100%;
+    height: 100%;
+
+    padding-left: 5%;
+    /* border-bottom: 1px solid black; */
+}
+
+#titulo h2 {
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 0;
+    font-size: 300%;
+}
+
+#pestañas {
+    width: 100%;
+    height: 100%;
+    padding-left: 6%;
+
+    border: 1px solid black;
+}
+
+#pestañas a{
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+    color: black;
+
+    /* border: 1px solid black; */
+}
+
+#pestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+
+/* ----------------------------------------------------------- */
+
+#PaqueteAgregar {
+    width: 100%;
+    padding-left: 5%;
+    margin-top: 4%;
+}
+
+#PaqueteAgregar {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#PaqueteAgregarCont label{
+    font-size: 140%;
+    margin-top: 4%;
+    width: 80%;
+    /* float: right; */
+    height: 15%;
+}
+
+#PaqueteAgregarCont input{
+    font-size: 100%;
+    margin-right: 5%;
+    width: 50%;
+    float: right;
+    height: 50%;
+}
+
+#PaqueteAgregarCont button {
+    width: 100px;
+    height: 30px;
+    margin-top: 3%;
+    margin-right: 20%;
+    float: right;
+}
+
+#PaqueteAgregarMsg{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#PaqueteAgregarMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#PaqueteAgregarMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}
