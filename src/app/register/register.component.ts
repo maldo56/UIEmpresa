@@ -143,14 +143,14 @@ export class RegisterComponent implements OnInit {
         aux.removeAttribute('class', 'require');
       }
     }
-    if(!valid){
-      this.RegEstadoMsg = 1;
-    }else{
-      if(elements[2]!=elements[3]){
-        this.RegEstadoMsg = 2;
-        return false;
-      }
-    }
+    // if(!valid){
+    //   this.RegEstadoMsg = 1;
+    // }else{
+    //   if(elements[2]!=elements[3]){
+    //     this.RegEstadoMsg = 2;
+    //     return false;
+    //   }
+    // }
     return valid;
   }
 

@@ -4,6 +4,7 @@ import { MapsAPILoader, AgmMap } from '@agm/core';
 import { ControllerService } from 'src/app/controller.service';
 
 declare const google: any;
+let zonas = [];
 
 @Component({
   selector: 'app-mp-zona-entrega',
@@ -36,7 +37,7 @@ export class MpZonaEntregaComponent implements OnInit {
   
   map : any;
 
-  constructor(private router: Router, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private app:ControllerService) { 
+  constructor(private router: Router, private app:ControllerService) { 
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
@@ -75,8 +76,11 @@ export class MpZonaEntregaComponent implements OnInit {
   ngAfterViewInit(): void {
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: this.ubicacion.lat, lng: this.ubicacion.lng},
-      zoom: 13
+      zoom: 13,
+      gestureHandling: 'greedy'
     });
+
+    console.log(google);
 
     var ubicLatLng = {lat: this.ubicacion.lat, lng: this.ubicacion.lng};
 
@@ -97,7 +101,7 @@ export class MpZonaEntregaComponent implements OnInit {
     });
 
     var drawingManager = new google.maps.drawing.DrawingManager({
-      drawingMode: null,//google.maps.drawing.OverlayType.POLYGON,
+      drawingMode: null,
       drawingControl: true,
       drawingControlOptions: {
         position: google.maps.ControlPosition.TOP_CENTER,
@@ -106,7 +110,7 @@ export class MpZonaEntregaComponent implements OnInit {
       polygonOptions: {
         strokeWeight: 0,
         fillOpacity: 0.45,
-        clickable: false,
+        clickable: true,
         editable: false,
       }
     });
@@ -115,11 +119,12 @@ export class MpZonaEntregaComponent implements OnInit {
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       console.log(polygon.getPath().getArray());
 
-      this.zonasEntrega.zona.push(polygon.getPath().getArray());
+      zonas.push(polygon.getPath().getArray());
     })
   }
 
   aceptarCambiosZona(){
+    this.zonasEntrega.zonas = zonas;
     console.log(this.zonasEntrega);
 
     this.app.actualizarZonasEntrega(this.zonasEntrega).subscribe(
