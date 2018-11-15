@@ -12,8 +12,8 @@ export class ControllerService {
     }
   }
 
-  // host : string = 'localhost:51532';
-  host : string = '192.168.1.43';
+  host : string = 'localhost:51532';
+  // host : string = '192.168.1.43';
   
   constructor(private http:HttpClient) { }
 

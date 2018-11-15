@@ -6,6 +6,24 @@ import { ControllerService } from 'src/app/controller.service';
 declare const google: any;
 let zonas = [];
 
+export class Punto{
+  public Lat : string;
+  public Lng : string;
+
+  constructor(Lat : string, Lng : string){
+    this.Lat = Lat;
+    this.Lng = Lng;
+  }
+}
+
+export class Zona{
+  public puntos : Array<Punto>;
+
+  constructor(){
+    this.puntos = new Array<Punto>();
+  }
+}
+
 @Component({
   selector: 'app-mp-zona-entrega',
   templateUrl: './mp-zona-entrega.component.html',
@@ -56,8 +74,8 @@ export class MpZonaEntregaComponent implements OnInit {
           
           // for(var x=0; x<aux.length; x++){
           //   cir = new Circulo(parseFloat(aux[x].Lat), parseFloat(aux[x].Lng), parseFloat(aux[x].Radio));
-          //   this.zonas.push(cir);
-          //   console.log(this.zonas.length);
+          //   this.puntos.push(cir);
+          //   console.log(this.puntos.length);
           // }
         },
         error => {
@@ -119,7 +137,22 @@ export class MpZonaEntregaComponent implements OnInit {
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
       console.log(polygon.getPath().getArray());
 
-      zonas.push(polygon.getPath().getArray());
+      let punto;
+
+      let geometry = 'POLYGON((';
+      punto = polygon.getPath().getAt(0);
+      geometry = geometry+punto.lat()+' '+punto.lng();
+
+      for(let x=1; x<polygon.getPath().getArray().length; x++){
+        punto = polygon.getPath().getAt(x);
+        geometry = geometry+','+punto.lat()+' '+punto.lng();
+      }
+
+      geometry = geometry+'))';
+
+      console.log(geometry);
+
+      zonas.push(geometry);
     })
   }
 
@@ -129,6 +162,7 @@ export class MpZonaEntregaComponent implements OnInit {
 
     this.app.actualizarZonasEntrega(this.zonasEntrega).subscribe(
       data => {
+        console.log(data);
         if(data){
           this.AgregarMsg = 2;
         }else{
@@ -137,6 +171,7 @@ export class MpZonaEntregaComponent implements OnInit {
       },
       error => {
         this.AgregarMsg = 3;
+        console.log(error);
       }
     );
   }
