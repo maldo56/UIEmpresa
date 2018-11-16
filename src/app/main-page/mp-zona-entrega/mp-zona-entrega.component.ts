@@ -55,7 +55,6 @@ export class MpZonaEntregaComponent implements OnInit {
   
   map : any;
 
-  //POLYGON ((-34.859 -56.087, -34.842 -56.06, -34.851 -56.031, -34.877 -56.056, -34.859 -56.087))
   constructor(private router: Router, private app:ControllerService) { 
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
@@ -67,22 +66,22 @@ export class MpZonaEntregaComponent implements OnInit {
       this.ubicacion.lng = parseFloat(this.session.Longitud);
       this.ubicacion.Direccion = this.session.Direccion;
 
-      // this.app.listarZonasEntrega(this.session.Rut).subscribe(
-      //   data => {
-      //     var aux : any;
-      //     aux = data;
-      //     var cir;
+      this.app.listarZonasEntrega(this.session.Rut).subscribe(
+        data => {
+          var aux : any;
+          aux = data;
+          var cir;
           
           // for(var x=0; x<aux.length; x++){
           //   cir = new Circulo(parseFloat(aux[x].Lat), parseFloat(aux[x].Lng), parseFloat(aux[x].Radio));
           //   this.puntos.push(cir);
           //   console.log(this.puntos.length);
           // }
-      //   },
-      //   error => {
-      //     this.AgregarMsg = 3;
-      //   }
-      // );
+        },
+        error => {
+          this.AgregarMsg = 3;
+        }
+      );
     }else{
       this.router.navigateByUrl('/LogIn');
     }
@@ -153,15 +152,15 @@ export class MpZonaEntregaComponent implements OnInit {
 
       let geometry = 'POLYGON((';
       punto = polygon.getPath().getAt(0);
-      geometry = geometry+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
+      geometry = geometry+punto.lat()+' '+punto.lng();
 
       for(let x=1; x<polygon.getPath().getArray().length; x++){
         punto = polygon.getPath().getAt(x);
-        geometry = geometry+', '+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
+        geometry = geometry+', '+punto.lat()+' '+punto.lng();
       }
 
       punto = polygon.getPath().getAt(0);
-      geometry = geometry+', '+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
+      geometry = geometry+', '+punto.lat()+' '+punto.lng();
 
       geometry = geometry+'))';
 
