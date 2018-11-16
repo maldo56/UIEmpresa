@@ -135,18 +135,21 @@ export class MpZonaEntregaComponent implements OnInit {
     drawingManager.setMap(this.map);
 
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-      console.log(polygon.getPath().getArray());
+      console.log(polygon);
 
       let punto;
 
       let geometry = 'POLYGON((';
       punto = polygon.getPath().getAt(0);
-      geometry = geometry+punto.lat()+' '+punto.lng();
+      geometry = geometry+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
 
       for(let x=1; x<polygon.getPath().getArray().length; x++){
         punto = polygon.getPath().getAt(x);
-        geometry = geometry+','+punto.lat()+' '+punto.lng();
+        geometry = geometry+', '+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
       }
+
+      punto = polygon.getPath().getAt(0);
+      geometry = geometry+', '+punto.lat().toFixed(3)+' '+punto.lng().toFixed(3);
 
       geometry = geometry+'))';
 
