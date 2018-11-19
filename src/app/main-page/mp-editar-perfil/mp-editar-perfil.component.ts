@@ -4,6 +4,7 @@ import { ControllerService } from 'src/app/controller.service';
 import { AgmMap, MapsAPILoader } from '@agm/core';
 
 declare var google;
+let autocomplete = null;
 
 @Component({
   selector: 'app-mp-editar-perfil',
@@ -46,9 +47,10 @@ export class MpEditarPerfilComponent implements OnInit {
   usuarioVerifPass : '';
   usuarioSubDiv : boolean = true;
 
-  pest: number = 1;
+  pest: number = 2;
   session: any;
   rubros: any;
+  map : any;
 
   UsuarioErrorGral: boolean = false;
   UsuarioErrorMsg: boolean = false;
@@ -60,7 +62,6 @@ export class MpEditarPerfilComponent implements OnInit {
   UbicacionError : number = 0;
 
   @ViewChild("ImgTag") ImgTag: ElementRef;
-  @ViewChild("inpDir") inpDir: ElementRef;
 
   constructor(private router: Router, private renderer: Renderer2, private app:ControllerService,
     private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
@@ -99,32 +100,47 @@ export class MpEditarPerfilComponent implements OnInit {
 
   ngOnInit() {
     
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.inpDir.nativeElement, 
-        {
-          types: ["address"]
-        }
-      );
+  }
 
-      autocomplete.setComponentRestrictions( {'country': ['uy']} );
+  ngAfterViewInit(): void {
+    var input = document.getElementById('inpDir');
+    var options = {
+      types: ['address'],
+      componentRestrictions: {country: 'uy'}
+    };
 
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
+    autocomplete = new google.maps.places.Autocomplete(input, options);
 
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          this.ubicacion.Direccion = place.formatted_address;
-          this.ubicacion.lat = place.geometry.location.lat();
-          this.ubicacion.lng = place.geometry.location.lng();
-  
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-        });
-      });
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      this.ubicacion.Direccion = place.formatted_address;
+      this.ubicacion.lat = place.geometry.location.lat().toString();
+      this.ubicacion.lng = place.geometry.location.lng().toString();
     });
 
-    console.log(this.ubicacion);
+    this.map = new google.maps.Map(document.getElementById('Mapa'), {
+      center: {lat: this.ubicacion.lat, lng: this.ubicacion.lng},
+      zoom: 13,
+      gestureHandling: 'greedy'
+    });
+
+    var ubicLatLng = {lat: this.ubicacion.lat, lng: this.ubicacion.lng};
+
+    var marker = new google.maps.Marker({
+      position: ubicLatLng,
+      map: this.map,
+      title: this.session.Rut
+    });
+
+    var contentString = '<div>'+this.ubicacion.Direccion+'</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function(){
+      infowindow.open(this.map, marker);
+    });
   }
 
   acceptUpdateUbicacion(){

@@ -101,6 +101,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.formEmp);
 
     if(this.validUser()){
+      this.formEmp.Pass = this.SHA256(this.confpass);
       this.app.RegistrarEmpresa(this.formEmp).subscribe(
         data => {
           console.log(data);

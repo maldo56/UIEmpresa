@@ -18,7 +18,7 @@ export class MpEstadosComponent implements OnInit {
   selected : boolean = false;
 
   estado = {
-    Id : -1,
+    Guid : '',
     Rut : '',
     Nombre : '',
     NuevoNombre : ''
@@ -83,7 +83,7 @@ export class MpEstadosComponent implements OnInit {
 
   cargarUpdate(i){
     this.selected = true;
-    this.estado.Id = this.estadosList[i].Id;
+    this.estado.Guid = this.estadosList[i].Guid;
     this.estado.Nombre = this.estadosList[i].Nombre;
     this.estado.NuevoNombre = this.estadosList[i].Nombre;
   }

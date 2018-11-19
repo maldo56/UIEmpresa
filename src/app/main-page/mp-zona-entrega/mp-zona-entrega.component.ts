@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { MapsAPILoader, AgmMap } from '@agm/core';
 import { ControllerService } from 'src/app/controller.service';
 
 declare const google: any;
 let zonas = [];
+
+let zonasAux;
 
 export class Punto{
   public Lat : string;
@@ -65,28 +66,9 @@ export class MpZonaEntregaComponent implements OnInit {
       this.ubicacion.lat = parseFloat(this.session.Latitud);
       this.ubicacion.lng = parseFloat(this.session.Longitud);
       this.ubicacion.Direccion = this.session.Direccion;
-
-      this.app.listarZonasEntrega(this.session.Rut).subscribe(
-        data => {
-          var aux : any;
-          aux = data;
-          var cir;
-          
-          // for(var x=0; x<aux.length; x++){
-          //   cir = new Circulo(parseFloat(aux[x].Lat), parseFloat(aux[x].Lng), parseFloat(aux[x].Radio));
-          //   this.puntos.push(cir);
-          //   console.log(this.puntos.length);
-          // }
-        },
-        error => {
-          this.AgregarMsg = 3;
-        }
-      );
-    }else{
-      this.router.navigateByUrl('/LogIn');
     }
   }
-
+  
   ngOnInit() {
     
   }
@@ -107,17 +89,6 @@ export class MpZonaEntregaComponent implements OnInit {
       map: this.map,
       title: this.session.Rut
     });
-
-    var polygon = new google.maps.Polygon({
-      path: [
-        {lat: -34.859, lng: -56.087},
-        {lat: -34.842, lng: -56.06},
-        {lat: -34.851, lng: -56.031},
-        {lat: -34.877, lng: -56.056},
-        {lat: -34.859, lng: -56.087}
-      ]
-    });
-    polygon.setMap(this.map);
 
     var contentString = '<div>'+this.ubicacion.Direccion+'</div>';
 
@@ -167,7 +138,39 @@ export class MpZonaEntregaComponent implements OnInit {
       console.log(geometry);
 
       zonas.push(geometry);
-    })
+    });
+
+    this.obtenerZonas();
+  }
+
+  obtenerZonas(){
+    this.app.listarZonasEntrega(this.session.Rut).subscribe(
+      data => {
+
+        var zonasEntrega = [];
+        var total = [];
+        var polygon;
+
+        zonasAux = data;
+
+        for(let x=0; x<zonasAux.length; x++){
+          zonasEntrega = zonasAux[x].puntos;
+
+          for(let y=0; y<zonasEntrega.length; y++){
+            total.push({ lat: +zonasEntrega[y].lat, lng: +zonasEntrega[y].lng});
+          }
+
+          polygon = new google.maps.Polygon({
+            path: total
+          });
+          polygon.setMap(this.map);
+        }
+
+      },
+      error => {
+        this.AgregarMsg = 3;
+      }
+    );
   }
 
   aceptarCambiosZona(){

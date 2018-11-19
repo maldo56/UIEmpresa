@@ -20,7 +20,7 @@ export class MpCategoriasComponent implements OnInit {
   selected : boolean = false;
 
   categoria = {
-    Id : -1,
+    Guid : '',
     Rut : '',
     Nombre : '',
     NuevoNombre : ''
@@ -67,6 +67,7 @@ export class MpCategoriasComponent implements OnInit {
 
     this.app.updateCategoria(this.categoria).subscribe(
       data => {
+        console.log(data);
         if(data){
           this.CatModificarEstadoMsg = 2;
         }else{
@@ -81,7 +82,7 @@ export class MpCategoriasComponent implements OnInit {
 
   cargarUpdate(i){
     this.selected = true;
-    this.categoria.Id = this.catList[i].Id;
+    this.categoria.Guid = this.catList[i].Guid;
     this.categoria.Nombre = this.catList[i].Nombre;
     this.categoria.NuevoNombre = this.catList[i].Nombre;
   }

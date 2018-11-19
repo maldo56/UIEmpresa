@@ -1,7 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
 import { ControllerService } from '../controller.service';
 
 @Component({

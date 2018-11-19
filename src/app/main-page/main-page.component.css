@@ -1,6 +1,9 @@
 #contenedor {
     width: 80%;
-    height: 1024px;
+    height: 960px;
+
+    overflow-y: scroll;
+    padding-bottom: 4%;
 
     border: solid black 1px;
 

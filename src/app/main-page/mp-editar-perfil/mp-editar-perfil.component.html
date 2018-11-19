@@ -64,12 +64,10 @@
   <div *ngIf="pest==2" id="EPUbicacion">
     <div id="UbicacionDiv1">
       <div id="Ubicacionform">
-        <label>Direccion: <input #inpDir type="text" [(ngModel)]="ubicacion.Direccion"/></label>
+        <label>Direccion: <input id="inpDir" type="text" [(ngModel)]="ubicacion.Direccion"/></label>
       </div>
       <div id="Mapa">
-        <agm-map [latitude]="ubicacion.lat" [longitude]="ubicacion.lng" [zoom]=15>
-          <agm-marker [latitude]="ubicacion.lat" [longitude]="ubicacion.lng"></agm-marker>
-        </agm-map>
+        
       </div>
     </div>
     <div id="UbicacionMag">
