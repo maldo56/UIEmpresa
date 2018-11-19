@@ -116,6 +116,8 @@ export class MpEditarPerfilComponent implements OnInit {
       this.ubicacion.Direccion = place.formatted_address;
       this.ubicacion.lat = place.geometry.location.lat().toString();
       this.ubicacion.lng = place.geometry.location.lng().toString();
+
+      this.map.setCenter({lat: place.geometry.location.lat(), lng: place.geometry.location.lng()});
     });
 
     this.map = new google.maps.Map(document.getElementById('Mapa'), {

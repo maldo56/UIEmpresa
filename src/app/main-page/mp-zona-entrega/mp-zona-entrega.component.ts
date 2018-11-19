@@ -135,8 +135,6 @@ export class MpZonaEntregaComponent implements OnInit {
 
       geometry = geometry+'))';
 
-      console.log(geometry);
-
       zonas.push(geometry);
     });
 
@@ -164,6 +162,8 @@ export class MpZonaEntregaComponent implements OnInit {
             path: total
           });
           polygon.setMap(this.map);
+
+          total = [];
         }
 
       },

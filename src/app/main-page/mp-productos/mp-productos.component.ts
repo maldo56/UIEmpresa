@@ -65,6 +65,10 @@ export class MpProductosComponent implements OnInit {
         data => {
           console.log(data);
           this.auxAgregarCategorias = data;
+
+          if(this.auxAgregarCategorias.length<3){
+            this.siguiente = false;
+          }
         },
         error => {
           console.log(error);
