@@ -148,6 +148,7 @@ export class MpZonaEntregaComponent implements OnInit {
         var zonasEntrega = [];
         var total = [];
         var polygon;
+        var allPolygons = [];
 
         zonasAux = data;
 
@@ -158,12 +159,17 @@ export class MpZonaEntregaComponent implements OnInit {
             total.push({ lat: +zonasEntrega[y].lat, lng: +zonasEntrega[y].lng});
           }
 
-          polygon = new google.maps.Polygon({
+          allPolygons.push(polygon = new google.maps.Polygon({
             path: total
-          });
-          polygon.setMap(this.map);
+          }));
+          // polygon.setMap(this.map);
 
+          polygon = null;
           total = [];
+        }
+
+        for(let x=0; x<allPolygons.length; x++){
+          allPolygons[x].setMap(this.map);
         }
 
       },

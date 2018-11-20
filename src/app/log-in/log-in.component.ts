@@ -46,6 +46,7 @@ console.log(this.formLogIn);
         if(data!=null){
           sessionStorage.setItem('session', JSON.stringify(data));
           // this.router.navigateByUrl("http://www.canarias.com.uy/mainPage");
+          document.getElementById('btnCerrarSession').style.display = 'block';
           this.router.navigateByUrl('/mainPage');
         }else{
           this.msgError = false;

@@ -11,10 +11,6 @@ export class AppComponent {
 
   EmpLog: any;
 
-  @ViewChild("InfoCont") InfoCont: ElementRef;
-  @ViewChild("Img") Img: ElementRef;
-  @ViewChild("BtnLogOut") BtnLogOut: ElementRef;
-
   constructor(private router: Router, private renderer: Renderer2,){
     var value = sessionStorage.getItem("session");
     if(value!=null){
@@ -23,18 +19,13 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    if(sessionStorage.getItem('session')!=null){
-      this.renderer.setStyle(this.BtnLogOut.nativeElement, 'display', 'block');
-    }else{
-      this.renderer.setStyle(this.BtnLogOut.nativeElement, 'display', 'none');
-    }
+
   }
 
   LogOut(){
     sessionStorage.removeItem('session');
 
-    // this.renderer.setStyle(this.InfoCont.nativeElement, 'display', 'none');
-    // this.renderer.setAttribute(this.Img.nativeElement, 'src', '');
+    document.getElementById('btnCerrarSession').style.display = 'none';
 
     this.router.navigateByUrl('/LogIn');
   }
