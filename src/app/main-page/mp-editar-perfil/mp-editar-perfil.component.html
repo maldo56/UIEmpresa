@@ -9,74 +9,73 @@
       <a (click)="changeP('p3');">Usuario</a>
     </div>
   </div>
-  
-  <div *ngIf="pest==1" id="EPGeneral">
-    <div id="GeneralDiv1">
-        <!-- <label>RUT: <label id="lbl1">{{general.Rut}}</label></label> <br>
-        <label>Nombre: <label id="lbl2">{{general.Nombre}}</label></label> <br> -->
-        <div id="GeneralForm">
-          <label>Rubro: <select [(ngModel)]="general.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label> <br>
-          <label>URL: <input type="text" [(ngModel)]="general.URLocator" /></label> <br>
-          <label>Descripcion: <textarea [(ngModel)]="general.Descripcion" rows="3" cols="25"></textarea></label>
-        </div>
-        <div id="divImgUp">
-          <h1>Sube tu logo!:</h1>
-          <img src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #ImgTag/>
-          <input (change)="selectImg($event)" type="file" class="inptselect"/>
-        </div>
+  <div id="ContenedorForm">
+    <div *ngIf="pest==1" id="EPGeneral">
+      <div id="GeneralDiv1">
+          <div id="GeneralForm">
+            <label>Rubro: <select [(ngModel)]="general.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label> <br>
+            <label>URL: <input type="text" [(ngModel)]="general.URLocator" /></label> <br>
+            <label>Descripcion: <textarea [(ngModel)]="general.Descripcion" rows="3" cols="25"></textarea></label>
+          </div>
+          <div id="divImgUp">
+            <h1>Sube tu logo!:</h1>
+            <img src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #ImgTag/>
+            <input (change)="selectImg($event)" type="file" class="inptselect"/>
+          </div>
+      
+      </div>
+      <div id="GeneralDiv2">
+        <button>Cancelar</button>
+        <button (click)="acceptUpdateGeneral()">Aceptar</button>
+      </div>
+    </div>
     
-    </div>
-    <div id="GeneralDiv2">
-      <button>Cancelar</button>
-      <button (click)="acceptUpdateGeneral()">Aceptar</button>
-    </div>
-  </div>
-  
-  <div *ngIf="pest==3" id="EPUsuario">
-    <div id="UsuarioDiv1">
-        <div id="GeneralForm">
-          <div id="UsuarioForm1" *ngIf="usuarioSubDiv">
-            <label>Nombre: <input type="text" [(ngModel)]="usuario.NombreAdmin"/></label> <br>
-            <label>Email: <input type="text" [(ngModel)]="usuario.Email"/></label> <br>
-            <div id="BtnChangePass">
-              <button (click)="changeusuarioSubDiv()">Cambiar contraseña</button>
+    <div *ngIf="pest==3" id="EPUsuario">
+      <div id="UsuarioDiv1">
+          <div id="GeneralForm">
+            <div id="UsuarioForm1" *ngIf="usuarioSubDiv">
+              <label>Nombre: <input type="text" [(ngModel)]="usuario.NombreAdmin"/></label> <br>
+              <label>Email: <input type="text" [(ngModel)]="usuario.Email"/></label> <br>
+              <div id="BtnChangePass">
+                <button (click)="changeusuarioSubDiv()">Cambiar contraseña</button>
+              </div>
+            </div>
+            <div id="UsuarioForm2" *ngIf="!usuarioSubDiv">
+              <label>Usuario: <input type="text" [(ngModel)]="usuarioAuxUsuario"/></label> <br>
+              <label>Contraseña actual: <input type="password" [(ngModel)]="usuarioAuxPass"/></label> <h1 *ngIf="UsuarioErrorPassIgualesActual">La contraseña nueva es igual a la actual</h1> <br>
+              <label>Contraseña nueva: <input type="password" [(ngModel)]="usuarioAuxNewPass"/></label> <h1 *ngIf="UsuarioErrorPassIguales">Las contraseñas deben coincidir</h1> <br>
+              <label>Verificación: <input type="password" [(ngModel)]="usuarioVerifPass"/></label> <br>
             </div>
           </div>
-          <div id="UsuarioForm2" *ngIf="!usuarioSubDiv">
-            <label>Usuario: <input type="text" [(ngModel)]="usuarioAuxUsuario"/></label> <br>
-            <label>Contraseña actual: <input type="password" [(ngModel)]="usuarioAuxPass"/></label> <h1 *ngIf="UsuarioErrorPassIgualesActual">La contraseña nueva es igual a la actual</h1> <br>
-            <label>Contraseña nueva: <input type="password" [(ngModel)]="usuarioAuxNewPass"/></label> <h1 *ngIf="UsuarioErrorPassIguales">Las contraseñas deben coincidir</h1> <br>
-            <label>Verificación: <input type="password" [(ngModel)]="usuarioVerifPass"/></label> <br>
-          </div>
-        </div>
+      </div>
+      <div id="UsuarioErrorMsg">
+        <h1 *ngIf="UsuarioErrorConeccion">NO SE PUDO CONECTAR CON EL SERVIDOR</h1>
+        <h1 *ngIf="UsuarioErrorMsg">DATOS INCORRECTOS</h1>
+        <h1 *ngIf="UsuarioErrorGral">ERROR AL COMPLETAR LA OPERACION</h1>
+      </div>
+      <div id="UsuarioDiv2">
+        <button (click)="changeusuarioSubDiv()" *ngIf="!usuarioSubDiv">Cancelar</button>
+        <button (click)="acceptUpdateUsuario()">Aceptar</button>
+      </div>
     </div>
-    <div id="UsuarioErrorMsg">
-      <h1 *ngIf="UsuarioErrorConeccion">NO SE PUDO CONECTAR CON EL SERVIDOR</h1>
-      <h1 *ngIf="UsuarioErrorMsg">DATOS INCORRECTOS</h1>
-      <h1 *ngIf="UsuarioErrorGral">ERROR AL COMPLETAR LA OPERACION</h1>
-    </div>
-    <div id="UsuarioDiv2">
-      <button (click)="changeusuarioSubDiv()" *ngIf="!usuarioSubDiv">Cancelar</button>
-      <button (click)="acceptUpdateUsuario()">Aceptar</button>
-    </div>
-  </div>
 
-  <div *ngIf="pest==2" id="EPUbicacion">
-    <div id="UbicacionDiv1">
-      <div id="Ubicacionform">
-        <label>Direccion: <input id="inpDir" type="text" [(ngModel)]="ubicacion.Direccion"/></label>
+    <div *ngIf="pest==2" id="EPUbicacion">
+      <div id="UbicacionDiv1">
+        <div id="Ubicacionform">
+          <label>Direccion: <input id="inpDir" type="text" [(ngModel)]="ubicacion.Direccion"/></label>
+        </div>
+        <div id="Mapa">
+          
+        </div>
       </div>
-      <div id="Mapa">
-        
+      <div id="UbicacionMag">
+        <h1 *ngIf="UbicacionError==1">No se pudo conectar con el servidor</h1>
+        <h1 *ngIf="UbicacionError==2">Error al completar la operacion</h1>
+        <h2 *ngIf="UbicacionError==3">Ubicación actualizada con exito</h2>
       </div>
-    </div>
-    <div id="UbicacionMag">
-      <h1 *ngIf="UbicacionError==1">No se pudo conectar con el servidor</h1>
-      <h1 *ngIf="UbicacionError==2">Error al completar la operacion</h1>
-      <h2 *ngIf="UbicacionError==3">Ubicación actualizada con exito</h2>
-    </div>
-    <div id="UbicacionDiv2">
-      <button (click)="acceptUpdateUbicacion()">Aceptar</button>
+      <div id="UbicacionDiv2">
+        <button (click)="acceptUpdateUbicacion()">Aceptar</button>
+      </div>
     </div>
   </div>
 </div>

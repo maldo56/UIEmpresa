@@ -80,6 +80,7 @@ export class MpProductosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setStyle(this.session.Tema);
   }
 
   agregarProducto() {
@@ -243,5 +244,11 @@ export class MpProductosComponent implements OnInit {
 
     this.updateauxKey = '';
     this.updateauxValue = '';
+  }
+
+  setStyle(style){
+    document.getElementById('titulo').setAttribute('class', style+'Titulo');
+    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
+    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
   }
 }

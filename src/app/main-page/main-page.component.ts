@@ -16,7 +16,6 @@ export class MainPageComponent implements OnInit {
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
-      console.log(this.session);
     }else{
       this.router.navigateByUrl('/LogIn');
     }
@@ -25,9 +24,18 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.renderer.setAttribute(this.Img.nativeElement, 'src', this.session.Logo);
     this.session = JSON.parse(sessionStorage.getItem('session'));
+    this.setStyle(this.session.Tema);
   }
 
   redirect(child){
     this.router.navigateByUrl('/mainPage/'+child);
+  }
+
+  setStyle(style){
+    document.getElementsByTagName('body')[0].setAttribute('class', style+'body');
+    document.getElementById('barracontainer').setAttribute('class', style+'SupBar');
+    document.getElementById('divImg').setAttribute('class', style+'Img');
+    document.getElementById('Menu').setAttribute('class', style+'Menu');
+    document.getElementById('contenedor').setAttribute('class', style+'contenedor');
   }
 }

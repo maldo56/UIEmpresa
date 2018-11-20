@@ -7,25 +7,13 @@
     </div>
   </div>
 
-  <div id="ZEAgregar" *ngIf="pest==1">
+  <div id="ZEAgregar">
     <div id="AgregarDiv1">
       <div id="FormAgregarCont">
         <div id="map">
 
         </div>
       </div>
-      <!-- <div id="TablaZonas">
-        <table>
-          <tr *ngIf="zonas.length>0"><th>Id</th> <th>Latitud</th> <th>Longitud</th> <th>Radio</th></tr>
-          <tr *ngFor="let z of zonas; let i = index">
-            <td>{{i}}</td>
-            <td>{{z.Lat}}</td>
-            <td>{{z.Lng}}</td>
-            <td>{{z.Radio}}</td>
-            <td> <button (click)="eliminarZona(i)">-</button> </td>
-          </tr>
-        </table>
-      </div> -->
       <div id="AgregarMsg">
         <h1 *ngIf="AgregarMsg==1">No se pudo actualizar las zonas de entrega</h1>
         <h2 *ngIf="AgregarMsg==2">Zonas de entrega actualizadas con exito</h2>

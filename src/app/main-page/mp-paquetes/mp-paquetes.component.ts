@@ -30,6 +30,7 @@ export class MpPaquetesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setStyle(this.session.Tema);
   }
 
   agregarPaquete(){
@@ -51,4 +52,9 @@ export class MpPaquetesComponent implements OnInit {
     );
   }
 
+  setStyle(style){
+    document.getElementById('titulo').setAttribute('class', style+'Titulo');
+    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
+    document.getElementById('PaqueteAgregar').setAttribute('class', style+'Form');
+  }
 }

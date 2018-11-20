@@ -8,42 +8,42 @@
       <a (click)="changeP('p2');">Modificar</a>
     </div>
   </div>
-
-  <div id="Agregar" *ngIf="pest==1">
-    <div id="AgregarCont">
-      <label>Nombre de estado: <input type="text" [(ngModel)]="estado.Nombre"/></label> <br>
-      <div id="AgregarMsg">
-        <h1 *ngIf="AgregarEstadoMsg==1">El estado ya existe</h1>
-        <h2 *ngIf="AgregarEstadoMsg==2">Estado agregado con exito</h2>
-        <h1 *ngIf="AgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
-      </div>
-      <button (click)="agregarEstado()">Aceptar</button>
-    </div>
-  </div>
-
-  <div id="EstadoModificar" *ngIf="pest==2">
-    <div id="EstadoModificarCont">
-      <label style="font-size: 20px">Seleccione un estado: </label> <br>
-      <table>
-        <tr *ngFor="let e of estadosList; let i = index" (click)="cargarUpdate(i)">
-          <td > {{(page*pagesize)+(i+1)}} </td>
-          <td > {{e.Nombre}} </td>
-        </tr>
-      </table>
-      <div id="contBtnNext">
-        <button *ngIf="siguiente" (click)="pageSiguiente()">Siguiente</button>
-        <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
-      </div>
-      <div id="estadoUpForm" *ngIf="selected">
-          <label>Nuevo nombre: <input type="text" [(ngModel)]="estado.NuevoNombre"/></label>
-          <button (click)="actualizarEstado()">Actualizar</button>
-      </div>
-      <div id="EstadoModificarMsg">
-        <h1 *ngIf="ModificarEstadoMsg==1">El estado ya existe</h1>
-        <h2 *ngIf="ModificarEstadoMsg==2">Estado modificado con exito</h2>
-        <h1 *ngIf="ModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+  <div id="ContenedorForm">
+    <div id="Agregar" *ngIf="pest==1">
+      <div id="AgregarCont">
+        <label>Nombre de estado: <input type="text" [(ngModel)]="estado.Nombre"/></label> <br>
+        <div id="AgregarMsg">
+          <h1 *ngIf="AgregarEstadoMsg==1">El estado ya existe</h1>
+          <h2 *ngIf="AgregarEstadoMsg==2">Estado agregado con exito</h2>
+          <h1 *ngIf="AgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
+        </div>
+        <button (click)="agregarEstado()">Aceptar</button>
       </div>
     </div>
-  </div>
 
+    <div id="EstadoModificar" *ngIf="pest==2">
+      <div id="EstadoModificarCont">
+        <label style="font-size: 20px">Seleccione un estado: </label> <br>
+        <table>
+          <tr *ngFor="let e of estadosList; let i = index" (click)="cargarUpdate(i)">
+            <td > {{(page*pagesize)+(i+1)}} </td>
+            <td > {{e.Nombre}} </td>
+          </tr>
+        </table>
+        <div id="contBtnNext">
+          <button *ngIf="siguiente" (click)="pageSiguiente()">Siguiente</button>
+          <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
+        </div>
+        <div id="estadoUpForm" *ngIf="selected">
+            <label>Nuevo nombre: <input type="text" [(ngModel)]="estado.NuevoNombre"/></label>
+            <button (click)="actualizarEstado()">Actualizar</button>
+        </div>
+        <div id="EstadoModificarMsg">
+          <h1 *ngIf="ModificarEstadoMsg==1">El estado ya existe</h1>
+          <h2 *ngIf="ModificarEstadoMsg==2">Estado modificado con exito</h2>
+          <h1 *ngIf="ModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

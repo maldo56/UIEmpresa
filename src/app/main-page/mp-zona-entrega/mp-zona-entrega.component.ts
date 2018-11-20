@@ -31,9 +31,6 @@ export class Zona{
   styleUrls: ['./mp-zona-entrega.component.css']
 })
 export class MpZonaEntregaComponent implements OnInit {
-
-  pest: number = 1;
-
   auxLat : number = 0;
   auxLng : number = 0;
   auxRadio : number = 300;
@@ -70,7 +67,7 @@ export class MpZonaEntregaComponent implements OnInit {
   }
   
   ngOnInit() {
-    
+    this.setStyle(this.session.Tema);
   }
 
   ngAfterViewInit(): void {
@@ -197,5 +194,11 @@ export class MpZonaEntregaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  setStyle(style){
+    document.getElementById('titulo').setAttribute('class', style+'Titulo');
+    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
+    document.getElementById('DivBtn').setAttribute('class', style+'Form');
   }
 }

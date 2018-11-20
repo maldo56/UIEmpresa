@@ -8,39 +8,41 @@
       <a (click)="changeP('p2');">Modificar</a>
     </div>
   </div>
-  <div id="CatAgregar" *ngIf="pest==1">
-    <div id="CatAgregarCont">
-      <label>Nombre de categoria: <input type="text" [(ngModel)]="categoria.Nombre"/></label> <br>
-      <div id="CatAgregarMsg">
-        <h1 *ngIf="CatAgregarEstadoMsg==1">La categoria ya existe</h1>
-        <h2 *ngIf="CatAgregarEstadoMsg==2">Categoria agregada con exito</h2>
-        <h1 *ngIf="CatAgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
+  <div id="ContenedorForm">
+    <div id="CatAgregar" *ngIf="pest==1">
+      <div id="CatAgregarCont">
+        <label>Nombre de categoria: <input type="text" [(ngModel)]="categoria.Nombre"/></label> <br>
+        <div id="CatAgregarMsg">
+          <h1 *ngIf="CatAgregarEstadoMsg==1">La categoria ya existe</h1>
+          <h2 *ngIf="CatAgregarEstadoMsg==2">Categoria agregada con exito</h2>
+          <h1 *ngIf="CatAgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
+        </div>
+        <button (click)="agregarCat()">Aceptar</button>
       </div>
-      <button (click)="agregarCat()">Aceptar</button>
     </div>
-  </div>
 
-  <div id="CatModificar" *ngIf="pest==2">
-    <div id="CatModificarCont">
-      <label style="font-size: 20px">Seleccione una categoría: </label> <br>
-      <table>
-        <tr *ngFor="let c of catList; let i = index" (click)="cargarUpdate(i)">
-          <td > {{(page*pagesize)+(i+1)}} </td>
-          <td > {{c.Nombre}} </td>
-        </tr>
-      </table>
-      <div id="contBtnNext">
-        <button *ngIf="siguiente" (click)="pageSiguiente()">Siguiente</button>
-        <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
-      </div>
-      <div id="catUpForm" *ngIf="selected">
-          <label>Nuevo nombre: <input type="text" [(ngModel)]="categoria.NuevoNombre"/></label>
-          <button (click)="actualizarCat()">Actualizar</button>
-      </div>
-      <div id="CatModificarMsg">
-        <h1 *ngIf="CatModificarEstadoMsg==1">La categoria ya existe</h1>
-        <h2 *ngIf="CatModificarEstadoMsg==2">Categoria modificada con exito</h2>
-        <h1 *ngIf="CatModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+    <div id="CatModificar" *ngIf="pest==2">
+      <div id="CatModificarCont">
+        <label style="font-size: 20px">Seleccione una categoría: </label> <br>
+        <table>
+          <tr *ngFor="let c of catList; let i = index" (click)="cargarUpdate(i)">
+            <td > {{(page*pagesize)+(i+1)}} </td>
+            <td > {{c.Nombre}} </td>
+          </tr>
+        </table>
+        <div id="contBtnNext">
+          <button *ngIf="siguiente" (click)="pageSiguiente()">Siguiente</button>
+          <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
+        </div>
+        <div id="catUpForm" *ngIf="selected">
+            <label>Nuevo nombre: <input type="text" [(ngModel)]="categoria.NuevoNombre"/></label>
+            <button (click)="actualizarCat()">Actualizar</button>
+        </div>
+        <div id="CatModificarMsg">
+          <h1 *ngIf="CatModificarEstadoMsg==1">La categoria ya existe</h1>
+          <h2 *ngIf="CatModificarEstadoMsg==2">Categoria modificada con exito</h2>
+          <h1 *ngIf="CatModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+        </div>
       </div>
     </div>
   </div>

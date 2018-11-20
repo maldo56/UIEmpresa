@@ -5,14 +5,9 @@
     overflow-y: scroll;
     padding-bottom: 4%;
 
-    border: solid black 1px;
-
     margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
-
-    background-color: whitesmoke;
-    background-clip: red;
 }
 
 #contNav {
@@ -24,8 +19,6 @@
     top: 25px;
 
     float: left;
-
-    /* border: 1px black solid; */
 }
 
 #DatosPerfil {
@@ -73,21 +66,6 @@
 
 #Menu li{
     font-size: 160%;
-    border: 1px solid black;
-}
-
-#Menu a{
-    color: black;
-}
-
-#Menu a:active {
-    text-decoration: none; 
-    color: blue;
-}
-
-#Menu a:hover{
-    color: brown;  
-    text-decoration: none;
 }
 
 #contComp {
@@ -97,6 +75,4 @@
     margin-right: 5%;
     margin-top: 2%;
     float: right;
-
-    /* border: 1px solid black; */
 }

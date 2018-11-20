@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+/* ------------DEFAULT------------- */
+
+.defaultbody {
+    background-image: url('https://res.cloudinary.com/dnieertcs/image/upload/v1542662103/fondo1.jpg');
+}
+.defaultSupBar {
+    background-color: black;
+}
+.defaultImg Img {
+    border: 1px solid cadetblue;
+}
+.defaultMenu a{
+    color: black;
+}
+.defaultMenu li{
+    font-family: cursive;
+    border: 1px solid cadetblue;
+}
+.defaultMenu a:active {
+    text-decoration: none; 
+    color: blue;
+}
+.defaultMenu a:hover{
+    color: brown;  
+    text-decoration: none;
+}
+.defaultcontenedor {
+    background-color: whitesmoke;
+    border: solid black 1px;
+}
+.defaultTitulo {
+    font-family: cursive;
+}
+.defaultPestañas {
+    font-family: cursive;
+    border: 1px solid cadetblue;
+}
+.defaultPestañas a {
+    color: black;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+
+    padding: 10px;
+}
+.defaultPestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+.defaultForm {
+    font-family: cursive;
+}
+.defaultForm input, select, textarea {
+    border: 1px solid cadetblue;
+}
+.defaultForm button {
+    background-color: white;
+    border: 1px solid cadetblue;
+}

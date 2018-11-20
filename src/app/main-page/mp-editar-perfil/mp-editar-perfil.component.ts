@@ -99,7 +99,7 @@ export class MpEditarPerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.setStyle(this.session.Tema);
   }
 
   ngAfterViewInit(): void {
@@ -428,4 +428,10 @@ export class MpEditarPerfilComponent implements OnInit {
     s = Utf8Encode(s);
     return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
    }
+
+   setStyle(style){
+    document.getElementById('titulo').setAttribute('class', style+'Titulo');
+    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
+    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
+  }
 }
