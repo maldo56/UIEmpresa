@@ -10,9 +10,7 @@ export class MainPageComponent implements OnInit {
 
   session : any;
 
-  @ViewChild("Img") Img: ElementRef;
-
-  constructor(private router: Router, private renderer: Renderer2) {
+  constructor(private router: Router) {
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
@@ -22,7 +20,7 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.renderer.setAttribute(this.Img.nativeElement, 'src', this.session.Logo);
+    document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
     this.session = JSON.parse(sessionStorage.getItem('session'));
     this.setStyle(this.session.Tema);
   }

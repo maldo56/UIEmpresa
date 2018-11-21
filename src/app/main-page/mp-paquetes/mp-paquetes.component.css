@@ -33,21 +33,6 @@
     border: 1px solid black;
 }
 
-#pestañas a{
-    margin-left: 1%;
-    margin-right: 1%;
-
-    font-size: 200%;
-    color: black;
-
-    /* border: 1px solid black; */
-}
-
-#pestañas a:hover {
-    color: brown;
-    text-decoration: none;
-}
-
 /* ----------------------------------------------------------- */
 
 #PaqueteAgregar {

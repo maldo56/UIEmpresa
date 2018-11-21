@@ -23,7 +23,8 @@ export class MpEditarPerfilComponent implements OnInit {
     UserName : '',
     User : '',
     Pass : '',
-    Logo: ''
+    Logo: '',
+    Tema: ''
   }
 
   usuario = {
@@ -47,7 +48,7 @@ export class MpEditarPerfilComponent implements OnInit {
   usuarioVerifPass : '';
   usuarioSubDiv : boolean = true;
 
-  pest: number = 2;
+  pest: number = 1;
   session: any;
   rubros: any;
   map : any;
@@ -72,11 +73,11 @@ export class MpEditarPerfilComponent implements OnInit {
 
       this.general.Descripcion = this.session.Descripcion;
       this.general.Direccion = this.session.Direccion;
-      // this.general.Logo = this.session.Logo;
       this.general.Nombre = this.session.Nombre;
       this.general.NombreRubro = this.session.NombreRubro;
       this.general.Rut = this.session.Rut;
       this.general.URLocator = this.session.URLocator;
+      this.general.Tema = this.session.Tema;
 
       this.usuario.NombreAdmin = this.session.NombreAdmin;
       this.usuario.Email = this.session.Email;
@@ -250,16 +251,19 @@ export class MpEditarPerfilComponent implements OnInit {
         }
       }
 
+      console.log(this.general);
+
       this.app.updateEmpresa(this.general).subscribe(
         data => {
           console.log(data);
-          if(data!=false){
+          if(data!='false'){
             this.general.Logo = data.toString();
             this.session = this.general;
             console.log('------------new session-----------');
             console.log(this.session);
             sessionStorage.setItem('session', JSON.stringify(this.session));
-
+            
+            document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
             this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', this.session.Logo);
 
             this.router.navigateByUrl('/mainPage');
@@ -428,6 +432,19 @@ export class MpEditarPerfilComponent implements OnInit {
     s = Utf8Encode(s);
     return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
    }
+
+  verTema(){
+    var style = this.general.Tema;
+    console.log(style);
+    document.getElementsByTagName('body')[0].setAttribute('class', style+'body');
+    document.getElementById('barracontainer').setAttribute('class', style+'SupBar');
+    document.getElementById('divImg').setAttribute('class', style+'Img');
+    document.getElementById('Menu').setAttribute('class', style+'Menu');
+    document.getElementById('contenedor').setAttribute('class', style+'contenedor');
+    document.getElementById('titulo').setAttribute('class', style+'Titulo');
+    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
+    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
+  }
 
    setStyle(style){
     document.getElementById('titulo').setAttribute('class', style+'Titulo');

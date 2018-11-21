@@ -33,21 +33,6 @@
     border: 1px solid black;
 }
 
-#pestañas a{
-    margin-left: 1%;
-    margin-right: 1%;
-
-    font-size: 200%;
-    color: black;
-
-    /* border: 1px solid black; */
-}
-
-/* #pestañas a:hover {
-    color: brown;
-    text-decoration: none;
-} */
-
 #CatAgregar {
     width: 100%;
     padding-left: 5%;
@@ -77,6 +62,7 @@
 #CatAgregarCont button {
     width: 100px;
     height: 30px;
+    font-size: inherit;
     margin-top: 3%;
     margin-right: 20%;
     float: right;
@@ -161,6 +147,9 @@
 }
 
 #catUpForm button {
+    width: 100px;
+    height: 30px;
+    font-size: inherit;
     float: right;
     margin-right: 5%;
 }

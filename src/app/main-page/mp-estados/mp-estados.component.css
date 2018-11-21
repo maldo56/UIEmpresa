@@ -33,21 +33,6 @@
     border: 1px solid black;
 }
 
-#pestañas a{
-    margin-left: 1%;
-    margin-right: 1%;
-
-    font-size: 200%;
-    color: black;
-
-    /* border: 1px solid black; */
-}
-
-#pestañas a:hover {
-    color: brown;
-    text-decoration: none;
-}
-
 #Agregar {
     width: 100%;
     padding-left: 5%;
@@ -77,6 +62,7 @@
 #AgregarCont button {
     width: 100px;
     height: 30px;
+    font-size: inherit;
     margin-top: 3%;
     margin-right: 20%;
     float: right;
@@ -164,6 +150,9 @@
 
 #estadoUpForm button {
     float: right;
+    width: 100px;
+    height: 30px;
+    font-size: inherit;
     margin-right: 5%;
 }
 

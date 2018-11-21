@@ -15,6 +15,10 @@
           <div id="GeneralForm">
             <label>Rubro: <select [(ngModel)]="general.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label> <br>
             <label>URL: <input type="text" [(ngModel)]="general.URLocator" /></label> <br>
+            <label>Tema: <select (change)="verTema()" [(ngModel)]="general.Tema"> 
+              <option value="default">Default</option> 
+              <option value="tema2">Tema2</option>
+            </select></label> <br>
             <label>Descripcion: <textarea [(ngModel)]="general.Descripcion" rows="3" cols="25"></textarea></label>
           </div>
           <div id="divImgUp">
@@ -25,7 +29,6 @@
       
       </div>
       <div id="GeneralDiv2">
-        <button>Cancelar</button>
         <button (click)="acceptUpdateGeneral()">Aceptar</button>
       </div>
     </div>

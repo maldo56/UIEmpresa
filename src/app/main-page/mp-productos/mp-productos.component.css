@@ -252,8 +252,9 @@
 }
 
 #btnCont button{
-    width: 90px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
+    font-size: inherit;
     float: right;
 }
 
@@ -330,7 +331,8 @@
 
 #btnModificarCont button {
     float: right;
-    width: 70px;
+    width: 100px;
     height: 30px;
+    font-size: inherit;
     margin-right: 5%;
 }
