@@ -33,6 +33,7 @@ export class MpProductosComponent implements OnInit {
 
   updateauxKey : '';
   updateauxValue : '';
+  updateObjectId : '';
 
   producto = {
     Rut : '',
@@ -222,7 +223,12 @@ export class MpProductosComponent implements OnInit {
   cargarUpdate(i){
     this.auxAttOpcionales =  new Array<OpcionalAtributte>();
     this.auxAttObligatorios = new Array<OpcionalAtributte>();
+
     var keys = Object.keys(this.productosList[i].PropProducto);
+    this.updateObjectId = this.productosList[i].ObjectId;
+
+    console.log(this.updateObjectId);
+
     for(let x=0; x<5; x++){
       this.auxAttObligatorios.push(new OpcionalAtributte(keys[x], this.productosList[i].PropProducto[keys[x]]));
     }
@@ -231,19 +237,51 @@ export class MpProductosComponent implements OnInit {
       this.auxAttOpcionales.push(new OpcionalAtributte(keys[x], this.productosList[i].PropProducto[keys[x]]));
     }
 
-    console.log(this.auxAttObligatorios);
-    console.log(this.auxAttOpcionales);
-
     this.selected = true;
   }
 
   updateAddAtributte(){
-    this.auxAttOpcionales.push(new OpcionalAtributte(this.updateauxKey, this.updateauxValue));
+    if(this.updateauxKey!='' && this.updateauxValue!=''){
+      this.auxAttOpcionales.push(new OpcionalAtributte(this.updateauxKey, this.updateauxValue));
 
-    console.log(this.auxAttOpcionales);
+      this.updateauxKey = '';
+      this.updateauxValue = '';
+    }
+  }
 
-    this.updateauxKey = '';
-    this.updateauxValue = '';
+  actualizarProducto() {
+    if(this.updateauxKey!='' && this.updateauxValue!='') {
+      this.auxAttOpcionales.push(new OpcionalAtributte(this.updateauxKey, this.updateauxValue));
+
+      this.updateauxKey='';
+      this.updateauxValue='';
+    }
+    console.log('UPDATE: ------------------');
+
+    var productoUp = { 
+      ObjectId : this.updateObjectId,
+      Rut : this.session.Rut,
+      Nombre : this.auxAttObligatorios[0].value,
+      Precio : this.auxAttObligatorios[1].value,
+      Moneda : 0,
+      Volumen : this.auxAttObligatorios[2].value,
+      Peso : this.auxAttObligatorios[3].value,
+      Descripcion : this.auxAttObligatorios[4].value,
+      Categorias : new Array<OpcionalAtributte>(),
+      Opcionales : this.auxAttOpcionales,
+      Imagenes: new Array<string>()
+    }
+
+    console.log(productoUp);
+
+    this.app.agregarProducto(productoUp).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   setStyle(style){
