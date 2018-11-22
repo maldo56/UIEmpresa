@@ -20,8 +20,9 @@
         
         <label>Categoria: <table id="tableAgregtarCategoria"> 
                             <tr *ngFor="let c of auxAgregarCategorias; let i of index"> <td> <button (click)="addCategoriaAProducto(i)">+</button> </td> <td>{{c.Nombre}}</td> </tr>
-                            <br><tr><td><button *ngIf="anterior" (click)="pageAnterior()"><</button><td><button *ngIf="siguiente" (click)="pageSiguiente()">></button></td></tr>
+                            <!-- <br><tr><td><button *ngIf="anterior" (click)="pageAnterior()"><</button><td><button *ngIf="siguiente" (click)="pageSiguiente()">></button></td></tr> -->
                           </table> </label>
+                          <div><button *ngIf="anterior" (click)="pageAnterior()"><</button><button *ngIf="siguiente" (click)="pageSiguiente()">></button></div>
         
         <label><h1 *ngFor="let c of producto.Categorias">{{c.value}}-</h1> </label>
 

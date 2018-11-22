@@ -52,9 +52,9 @@
           </div>
       </div>
       <div id="UsuarioErrorMsg">
-        <h1 *ngIf="UsuarioErrorConeccion">NO SE PUDO CONECTAR CON EL SERVIDOR</h1>
-        <h1 *ngIf="UsuarioErrorMsg">DATOS INCORRECTOS</h1>
-        <h1 *ngIf="UsuarioErrorGral">ERROR AL COMPLETAR LA OPERACION</h1>
+        <h1 *ngIf="UsuarioErrorMsg==1">NO SE PUDO CONECTAR CON EL SERVIDOR</h1>
+        <h1 *ngIf="UsuarioErrorMsg==2">DATOS INCORRECTOS</h1>
+        <h1 *ngIf="UsuarioErrorMsg==3">ERROR AL COMPLETAR LA OPERACION</h1>
       </div>
       <div id="UsuarioDiv2">
         <button (click)="changeusuarioSubDiv()" *ngIf="!usuarioSubDiv">Cancelar</button>

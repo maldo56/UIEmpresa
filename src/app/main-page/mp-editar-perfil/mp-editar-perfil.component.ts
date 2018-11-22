@@ -53,9 +53,7 @@ export class MpEditarPerfilComponent implements OnInit {
   rubros: any;
   map : any;
 
-  UsuarioErrorGral: boolean = false;
-  UsuarioErrorMsg: boolean = false;
-  UsuarioErrorConeccion: boolean = false;
+  UsuarioErrorMsg: number = 0;
 
   UsuarioErrorPassIguales : Boolean = false;
   UsuarioErrorPassIgualesActual : Boolean = false;
@@ -190,15 +188,11 @@ export class MpEditarPerfilComponent implements OnInit {
             sessionStorage.setItem('session', JSON.stringify(this.session));
             this.router.navigateByUrl('/mainPage');
           }else{
-            this.UsuarioErrorConeccion = false;
-            this.UsuarioErrorMsg = false;
-            this.UsuarioErrorGral = true;
+            this.UsuarioErrorMsg = 3;
           }
         },
         error => {
-          this.UsuarioErrorMsg = false;
-          this.UsuarioErrorGral = false;
-          this.UsuarioErrorConeccion = true;
+          this.UsuarioErrorMsg = 3;
         }
       );
     }else{
@@ -221,16 +215,12 @@ export class MpEditarPerfilComponent implements OnInit {
           if(data){
             this.router.navigateByUrl('/mainPage');
           }else{
-            this.UsuarioErrorConeccion = false;
-            this.UsuarioErrorGral = false;
-            this.UsuarioErrorMsg = true;
+            this.UsuarioErrorMsg = 3;
           }
           this.usuario.NombreAdmin = this.session.NombreAdmin;
         },
         error => {
-          this.UsuarioErrorMsg = false;
-          this.UsuarioErrorGral = false;
-          this.UsuarioErrorConeccion = true;
+          this.UsuarioErrorMsg = 1;
         }
       );
     }
@@ -257,14 +247,21 @@ export class MpEditarPerfilComponent implements OnInit {
         data => {
           console.log(data);
           if(data!='false'){
-            this.general.Logo = data.toString();
+
+            this.general.Logo = this.session.Logo;
+            if(data.toString()!=""){
+              console.log("entraaaaaa");
+              this.general.Logo = data.toString();
+              document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
+              this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', this.session.Logo);
+            }
+
             this.session = this.general;
             console.log('------------new session-----------');
             console.log(this.session);
             sessionStorage.setItem('session', JSON.stringify(this.session));
             
             document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
-            this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', this.session.Logo);
 
             this.router.navigateByUrl('/mainPage');
           }else{
@@ -282,6 +279,7 @@ export class MpEditarPerfilComponent implements OnInit {
   }
 
   changeP(cod){
+    this.UsuarioErrorMsg = 0;
     if(cod=='p1'){
       this.pest = 1;
     }else if(cod=='p2'){
@@ -296,9 +294,7 @@ export class MpEditarPerfilComponent implements OnInit {
   changeusuarioSubDiv(){
     this.usuarioSubDiv = !this.usuarioSubDiv;
 
-    this.UsuarioErrorConeccion = false;
-    this.UsuarioErrorGral = false;
-    this.UsuarioErrorMsg = false;
+    this.UsuarioErrorMsg = 0;
   }
 
   selectImg(event){
@@ -329,6 +325,10 @@ export class MpEditarPerfilComponent implements OnInit {
       retorno = false;
     }else{
       this.UsuarioErrorPassIgualesActual = false;
+    }
+    if(this.usuarioAuxUsuario==''){
+      this.UsuarioErrorMsg = 2;
+      return false;
     }
 
     return retorno;

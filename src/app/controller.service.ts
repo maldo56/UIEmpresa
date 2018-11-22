@@ -77,8 +77,8 @@ export class ControllerService {
     return this.http.post('http://'+this.host+'/api/Empresa/agregarProducto', body, this.options);
   }
 
-  listarProductos(){
-    return this.http.get('http://'+this.host+'/api/Empresa/listarProductos');
+  listarProductos(rut){
+    return this.http.get('http://'+this.host+'/api/Empresa/listarProductos?rut='+rut);
   }
 
   actualizarZonasEntrega(body:any){

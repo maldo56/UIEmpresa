@@ -193,7 +193,7 @@ export class MpProductosComponent implements OnInit {
 
       this.pest = 1;
     }else if(cod=='p2'){
-      this.app.listarProductos().subscribe(
+      this.app.listarProductos(this.session.Rut).subscribe(
         data => {
           console.log(data);
           this.productosList = data;
