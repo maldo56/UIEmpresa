@@ -24,6 +24,7 @@ export class AppComponent {
 
   LogOut(){
     sessionStorage.removeItem('session');
+    sessionStorage.removeItem('control');
 
     document.getElementById('btnCerrarSession').style.display = 'none';
 

@@ -62,8 +62,7 @@ export class MpEditarPerfilComponent implements OnInit {
 
   @ViewChild("ImgTag") ImgTag: ElementRef;
 
-  constructor(private router: Router, private renderer: Renderer2, private app:ControllerService,
-    private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor(private router: Router, private renderer: Renderer2, private app:ControllerService) {
       
     if(sessionStorage.getItem('session')!=null){
       var aux = sessionStorage.getItem('session');
@@ -102,23 +101,6 @@ export class MpEditarPerfilComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    var input = document.getElementById('inpDir');
-    var options = {
-      types: ['address'],
-      componentRestrictions: {country: 'uy'}
-    };
-
-    autocomplete = new google.maps.places.Autocomplete(input, options);
-
-    autocomplete.addListener('place_changed', function() {
-      var place = autocomplete.getPlace();
-      this.ubicacion.Direccion = place.formatted_address;
-      this.ubicacion.lat = place.geometry.location.lat().toString();
-      this.ubicacion.lng = place.geometry.location.lng().toString();
-
-      this.map.setCenter({lat: place.geometry.location.lat(), lng: place.geometry.location.lng()});
-    });
-
     this.map = new google.maps.Map(document.getElementById('Mapa'), {
       center: {lat: this.ubicacion.lat, lng: this.ubicacion.lng},
       zoom: 13,
@@ -141,6 +123,23 @@ export class MpEditarPerfilComponent implements OnInit {
 
     marker.addListener('click', function(){
       infowindow.open(this.map, marker);
+    });
+
+    var input = document.getElementById('inpDir');
+    var options = {
+      types: ['address'],
+      componentRestrictions: {country: 'uy'}
+    };
+
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      this.ubicacion.Direccion = place.formatted_address;
+      this.ubicacion.lat = place.geometry.location.lat().toString();
+      this.ubicacion.lng = place.geometry.location.lng().toString();
+
+      this.map.setCenter({lat: place.geometry.location.lat(), lng: place.geometry.location.lng()});
     });
   }
 

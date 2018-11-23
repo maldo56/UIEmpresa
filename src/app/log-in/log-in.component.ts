@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
       this.msgError = false;
       this.msgFailed = false;
     }else{
-      this.router.navigateByUrl('/mainPage');
+      this.router.navigateByUrl('/mainPage/Inicio');
     }
   }
 

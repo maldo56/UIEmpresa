@@ -1,0 +1,41 @@
+#container{
+    width: 100%;
+}
+
+#contBarSup {
+    height: 40px;
+    width: 100%;
+
+    margin-bottom: 1%;
+    /* border: 1px solid black; */
+}
+
+#titulo {
+    width: 100%;
+    height: 100%;
+
+    padding-left: 5%;
+    /* border-bottom: 1px solid black; */
+}
+
+#titulo h2 {
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 0;
+    font-size: 300%;
+}
+
+#pestañas {
+    width: 100%;
+    height: 100%;
+    padding-left: 6%;
+
+    border: 1px solid black;
+}
+
+#Contreportes {
+    margin-left: 5%;
+    font-size: 25px;
+    margin-top: 5%;
+    line-height: 55px;
+}

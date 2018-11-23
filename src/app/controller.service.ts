@@ -88,4 +88,8 @@ export class ControllerService {
   listarZonasEntrega(rut : string){
     return this.http.get('http://'+this.host+'/api/Empresa/listarZonasEntrega?rut='+rut);
   }
+
+  inicio(rut : string, usuario : string){
+    return this.http.get('http://'+this.host+'/api/Empresa/inicio?rut='+rut+'&usuario='+usuario);
+  }
 }
