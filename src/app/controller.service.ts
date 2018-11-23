@@ -21,6 +21,10 @@ export class ControllerService {
     return this.http.post('http://'+this.host+'/api/Empresa/LogIn', body, this.options);
   }
 
+  addAdmin(body:any){
+    return this.http.post('http://'+this.host+'/api/Empresa/AltaAdminEmpresa', body, this.options);
+  }
+
   getAllRubros(){
     return this.http.get('http://'+this.host+'/api/Empresa/getRubros');
   }

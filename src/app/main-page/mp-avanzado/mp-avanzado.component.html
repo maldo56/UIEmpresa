@@ -1,0 +1,35 @@
+<div id="container">
+    <div id="titulo">
+        <h2>Opciones avanzadas:</h2>
+    </div>
+    <div id="contBarSup">
+      <div id="pestañas">
+        <a (click)="changeP('p1');">Agregar usuario</a>
+        <a (click)="changeP('p2');">Desactivar cuenta</a>
+      </div>
+    </div>
+    <div id="ContenedorForm">
+
+      <div id="AgregarUsuario" *ngIf="pest==1">
+        <label>Nombre: <input name="inpAgregarUsuario" type="text" [(ngModel)]="admin.NombreAdmin" /></label> <br>
+        <label>Usuario: <input name="inpAgregarUsuario" type="text" [(ngModel)]="admin.Usuario" /></label> <br>
+        <label>Email: <input type="text" [(ngModel)]="admin.Email" /></label> <br>
+        <label>Contraseña: <input name="inpAgregarUsuario" type="password" [(ngModel)]="auxPsw1" /></label> <br>
+        <label>Confirmar contraseña: <input name="inpAgregarUsuario" type="password" [(ngModel)]="auxPsw2" /></label> <br>
+
+        <div id="AddUsuarioMsg">
+          <h1 *ngIf="msgAdmin==1">Hay campos requeridos</h1>
+          <h1 *ngIf="msgAdmin==2">Las contraseñas no coinciden</h1>
+          <h1 *ngIf="msgAdmin==3">No se pudo completar la operacion</h1>
+          <h1 *ngIf="msgAdmin==4">Error al conectarse con el servidor</h1>
+          <h2 *ngIf="msgAdmin==5">Usuario agregado con exito</h2>
+        </div>
+
+        <div id="btnAgregarUsuario">
+          <button (click)="agregarUsuarioAdmin()">Aceptar</button>
+        </div>
+        
+      </div>
+
+    </div>
+</div>

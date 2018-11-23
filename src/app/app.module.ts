@@ -24,6 +24,7 @@ import { MpPaquetesComponent } from './main-page/mp-paquetes/mp-paquetes.compone
 import { MpProductosComponent } from './main-page/mp-productos/mp-productos.component';
 import { MpOrdenesComponent } from './main-page/mp-ordenes/mp-ordenes.component';
 import { InicioComponent } from './main-page/inicio/inicio.component';
+import { MpAvanzadoComponent } from './main-page/mp-avanzado/mp-avanzado.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/LogIn', pathMatch: 'full' },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
       { path: 'Estados', component: MpEstadosComponent},
       { path: 'Paquetes', component: MpPaquetesComponent },
       { path: 'Productos', component: MpProductosComponent },
-      { path: 'ZonasEntrega', component: MpZonaEntregaComponent }
+      { path: 'ZonasEntrega', component: MpZonaEntregaComponent },
+      { path: 'Avanzado', component: MpAvanzadoComponent }
     ] 
   }
 ];
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     MpPaquetesComponent,
     MpProductosComponent,
     MpOrdenesComponent,
-    InicioComponent
+    InicioComponent,
+    MpAvanzadoComponent
   ],
   imports: [
     BrowserModule,
