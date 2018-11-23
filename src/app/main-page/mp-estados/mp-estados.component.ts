@@ -45,41 +45,74 @@ export class MpEstadosComponent implements OnInit {
   }
 
   agregarEstado(){
-    this.app.agregarEstado(this.estado).subscribe(
-      data => {
-        if(data){
-          this.AgregarEstadoMsg = 2;
 
-          this.estado.Nombre = '';
-          this.estado.NuevoNombre = '';
-        }else{
-          this.AgregarEstadoMsg = 1;
+    if(this.estado.Nombre==''){
+      this.AgregarEstadoMsg = 4;
+      setTimeout (() => {
+        this.AgregarEstadoMsg = 0;
+      }, 5000);
+    }else{
+      this.app.agregarEstado(this.estado).subscribe(
+        data => {
+          if(data){
+            this.AgregarEstadoMsg = 2;
+            setTimeout (() => {
+              this.AgregarEstadoMsg = 0;
+            }, 5000);
+  
+            this.estado.Nombre = '';
+            this.estado.NuevoNombre = '';
+          }else{
+            this.AgregarEstadoMsg = 1;
+            setTimeout (() => {
+              this.AgregarEstadoMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.AgregarEstadoMsg = 3;
+          setTimeout (() => {
+            this.AgregarEstadoMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.AgregarEstadoMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   actualizarEstado(){
     console.log(this.estado);
 
-    this.app.updateEstado(this.estado).subscribe(
-      data => {
-        if(data){
-          this.ModificarEstadoMsg = 2;
-
-          this.estado.Nombre = '';
-          this.estado.NuevoNombre = '';
-        }else{
-          this.ModificarEstadoMsg = 1;
+    if(this.estado.NuevoNombre==''){
+      this.ModificarEstadoMsg = 4;
+      setTimeout (() => {
+        this.ModificarEstadoMsg = 0;
+      }, 5000);
+    }else{
+      this.app.updateEstado(this.estado).subscribe(
+        data => {
+          if(data){
+            this.ModificarEstadoMsg = 2;
+            setTimeout (() => {
+              this.ModificarEstadoMsg = 0;
+            }, 5000);
+  
+            this.estado.Nombre = '';
+            this.estado.NuevoNombre = '';
+          }else{
+            this.ModificarEstadoMsg = 1;
+            setTimeout (() => {
+              this.ModificarEstadoMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.ModificarEstadoMsg = 3;
+          setTimeout (() => {
+            this.ModificarEstadoMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.ModificarEstadoMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   cargarUpdate(i){
@@ -103,6 +136,9 @@ export class MpEstadosComponent implements OnInit {
       },
       error => {
         this.ModificarEstadoMsg = 3;
+        setTimeout (() => {
+          this.ModificarEstadoMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -121,6 +157,9 @@ export class MpEstadosComponent implements OnInit {
       },
       error => {
         this.ModificarEstadoMsg = 3;
+        setTimeout (() => {
+          this.ModificarEstadoMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -144,6 +183,9 @@ export class MpEstadosComponent implements OnInit {
         },
         error => {
           this.ModificarEstadoMsg = 3;
+          setTimeout (() => {
+            this.ModificarEstadoMsg = 0;
+          }, 5000);
         }
       );
       this.pest = 2;

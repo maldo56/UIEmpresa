@@ -54,6 +54,7 @@ export class MpEditarPerfilComponent implements OnInit {
   map : any;
 
   UsuarioErrorMsg: number = 0;
+  msgUpPerfilGeneral : number = 0;
 
   UsuarioErrorPassIguales : Boolean = false;
   UsuarioErrorPassIgualesActual : Boolean = false;
@@ -155,6 +156,9 @@ export class MpEditarPerfilComponent implements OnInit {
 
         if(data==true){
           this.UbicacionError = 3;
+          setTimeout (() => {
+            this.UbicacionError = 0;
+          }, 5000);
 
           this.session.Latitud = this.ubicacion.lat;
           this.session.Longitud = this.ubicacion.lng;
@@ -163,37 +167,54 @@ export class MpEditarPerfilComponent implements OnInit {
           sessionStorage.setItem('session', JSON.stringify(this.session));          
         }else{
           this.UbicacionError = 2;
+          setTimeout (() => {
+            this.UbicacionError = 0;
+          }, 5000);
         }
       },
       error => {
         this.UbicacionError = 1;
+        setTimeout (() => {
+          this.UbicacionError = 0;
+        }, 5000);
       }
     );
-
-    this.UbicacionError = 3;
   }
  
   acceptUpdateUsuario(){
     console.log('Update Admin');
     if(this.usuarioSubDiv){
-      this.usuario.Rut = this.session.Rut;
+      if(this.usuario.NombreAdmin==''){
+        this.UsuarioErrorMsg = 4;
+        setTimeout (() => {
+          this.UsuarioErrorMsg = 0;
+        }, 5000);
+      }else{
+        this.usuario.Rut = this.session.Rut;
       
-      this.app.updateAdminEmpresa(this.usuario).subscribe(
-        data => {
-          console.log(data);
-          if(data){
-            this.session.NombreAdmin = this.usuario.NombreAdmin;
-            this.session.Email = this.usuario.Email;
-            sessionStorage.setItem('session', JSON.stringify(this.session));
-            this.router.navigateByUrl('/mainPage');
-          }else{
+        this.app.updateAdminEmpresa(this.usuario).subscribe(
+          data => {
+            console.log(data);
+            if(data){
+              this.session.NombreAdmin = this.usuario.NombreAdmin;
+              this.session.Email = this.usuario.Email;
+              sessionStorage.setItem('session', JSON.stringify(this.session));
+              this.router.navigateByUrl('/mainPage/Inicio');
+            }else{
+              this.UsuarioErrorMsg = 3;
+              setTimeout (() => {
+                this.UsuarioErrorMsg = 0;
+              }, 5000);
+            }
+          },
+          error => {
             this.UsuarioErrorMsg = 3;
+            setTimeout (() => {
+              this.UsuarioErrorMsg = 0;
+            }, 5000);
           }
-        },
-        error => {
-          this.UsuarioErrorMsg = 3;
-        }
-      );
+        );
+      }
     }else{
       if(this.UsuarioPassVerificacion()){
 
@@ -215,11 +236,17 @@ export class MpEditarPerfilComponent implements OnInit {
             this.router.navigateByUrl('/mainPage');
           }else{
             this.UsuarioErrorMsg = 3;
+            setTimeout (() => {
+              this.UsuarioErrorMsg = 0;
+            }, 5000);
           }
           this.usuario.NombreAdmin = this.session.NombreAdmin;
         },
         error => {
           this.UsuarioErrorMsg = 1;
+          setTimeout (() => {
+            this.UsuarioErrorMsg = 0;
+          }, 5000);
         }
       );
     }
@@ -231,49 +258,63 @@ export class MpEditarPerfilComponent implements OnInit {
 
   acceptUpdateGeneral(){
 
-    if(this.session.NombreRubro!=this.general.NombreRubro || this.session.URLocator!=this.general.URLocator || this.session.Descripcion!=this.general.Descripcion || this.session.Logo!=this.general.Logo){
-      console.log('Distintos');
-
-      const options = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-
-      console.log(this.general);
-
-      this.app.updateEmpresa(this.general).subscribe(
-        data => {
-          console.log(data);
-          if(data!='false'){
-
-            this.general.Logo = this.session.Logo;
-            if(data.toString()!=""){
-              console.log("entraaaaaa");
-              this.general.Logo = data.toString();
-              document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
-              this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', this.session.Logo);
-            }
-
-            this.session = this.general;
-            console.log('------------new session-----------');
-            console.log(this.session);
-            sessionStorage.setItem('session', JSON.stringify(this.session));
-            
-            document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
-
-            this.router.navigateByUrl('/mainPage');
-          }else{
-            console.log('Da false');
-          }
-        },
-        error => {
-          console.log("Error");
-        }
-      );
-
+    if(this.general.URLocator==''){
+      this.msgUpPerfilGeneral = 1;
+      setTimeout (() => {
+        this.msgUpPerfilGeneral = 0;
+      }, 5000);
     }else{
-      console.log('Iguales');
+
+      if(this.session.NombreRubro!=this.general.NombreRubro || this.session.URLocator!=this.general.URLocator || this.session.Descripcion!=this.general.Descripcion || this.session.Logo!=this.general.Logo){
+        console.log('Distintos');
+
+        const options = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+
+        console.log(this.general);
+
+        this.app.updateEmpresa(this.general).subscribe(
+          data => {
+            console.log(data);
+            if(data!='false'){
+
+              this.general.Logo = this.session.Logo;
+              if(data.toString()!=""){
+                console.log("entraaaaaa");
+                this.general.Logo = data.toString();
+                document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
+                this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', this.session.Logo);
+              }
+
+              this.session = this.general;
+              console.log('------------new session-----------');
+              console.log(this.session);
+              sessionStorage.setItem('session', JSON.stringify(this.session));
+              
+              document.getElementById('mainPageImg').setAttribute('src', this.session.Logo);
+
+              this.router.navigateByUrl('/mainPage/Inicio');
+            }else{
+              this.msgUpPerfilGeneral = 2;
+              setTimeout (() => {
+                this.msgUpPerfilGeneral = 0;
+              }, 5000);
+            }
+          },
+          error => {
+            this.msgUpPerfilGeneral = 3;
+            setTimeout (() => {
+              this.msgUpPerfilGeneral = 0;
+            }, 5000);
+          }
+        );
+
+      }else{
+        console.log('Iguales');
+      }
     }
   }
 

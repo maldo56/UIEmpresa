@@ -11,11 +11,12 @@
   <div id="ContenedorForm">
     <div id="Agregar" *ngIf="pest==1">
       <div id="AgregarCont">
-        <label>Nombre de estado: <input type="text" [(ngModel)]="estado.Nombre"/></label> <br>
+        <label>Nombre de estado: <input type="text" placeholder="Campo requerido" [(ngModel)]="estado.Nombre"/></label> <br>
         <div id="AgregarMsg">
           <h1 *ngIf="AgregarEstadoMsg==1">El estado ya existe</h1>
           <h2 *ngIf="AgregarEstadoMsg==2">Estado agregado con exito</h2>
           <h1 *ngIf="AgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
+          <h1 *ngIf="AgregarEstadoMsg==4">Hay campos requeridos</h1>
         </div>
         <button (click)="agregarEstado()">Aceptar</button>
       </div>
@@ -35,13 +36,14 @@
           <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
         </div>
         <div id="estadoUpForm" *ngIf="selected">
-            <label>Nuevo nombre: <input type="text" [(ngModel)]="estado.NuevoNombre"/></label>
+            <label>Nuevo nombre: <input type="text" placeholder="Campo requerido" [(ngModel)]="estado.NuevoNombre"/></label>
             <button (click)="actualizarEstado()">Actualizar</button>
         </div>
         <div id="EstadoModificarMsg">
           <h1 *ngIf="ModificarEstadoMsg==1">El estado ya existe</h1>
           <h2 *ngIf="ModificarEstadoMsg==2">Estado modificado con exito</h2>
           <h1 *ngIf="ModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+          <h1 *ngIf="ModificarEstadoMsg==4">Hay campos requeridos</h1>
         </div>
       </div>
     </div>

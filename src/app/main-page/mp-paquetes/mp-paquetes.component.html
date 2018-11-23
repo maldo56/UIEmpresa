@@ -15,6 +15,7 @@
         <h1 *ngIf="PaqueteAgregarMsg==1">El paquete ya existe</h1>
         <h2 *ngIf="PaqueteAgregarMsg==2">Paquete agregado con exito</h2>
         <h1 *ngIf="PaqueteAgregarMsg==3">Error al conectarse con el servidor</h1>
+        <h1 *ngIf="PaqueteAgregarMsg==4">Los valores deben ser mayores a 0 </h1>
       </div>
       <button (click)="agregarPaquete()">Aceptar</button>
     </div>

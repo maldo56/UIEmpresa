@@ -50,8 +50,14 @@ export class MpAvanzadoComponent implements OnInit {
         data => {
           if(data){
             this.msgAdmin = 5;
+            setTimeout (() => {
+              this.msgAdmin = 0;
+            }, 5000);
           }else{
             this.msgAdmin = 3;
+            setTimeout (() => {
+              this.msgAdmin = 0;
+            }, 5000);
           }
 
           this.admin.NombreAdmin = '';
@@ -62,6 +68,9 @@ export class MpAvanzadoComponent implements OnInit {
         error => {
           console.log(error);
           this.msgAdmin = 4;
+          setTimeout (() => {
+            this.msgAdmin = 0;
+          }, 5000);
         }
       );
     }
@@ -70,6 +79,9 @@ export class MpAvanzadoComponent implements OnInit {
   verificarDatosAddAdmin(){
     if(this.admin.NombreAdmin == '' || this.admin.Usuario == '' || this.auxPsw1 == '' || this.auxPsw2 == ''){
       this.msgAdmin = 1;
+      setTimeout (() => {
+        this.msgAdmin = 0;
+      }, 5000);
 
       var elements = document.getElementsByName('inpAgregarUsuario');
 
@@ -83,8 +95,14 @@ export class MpAvanzadoComponent implements OnInit {
 
     }else if(this.auxPsw1!=this.auxPsw2){
       this.msgAdmin = 2;
+      setTimeout (() => {
+        this.msgAdmin = 0;
+      }, 5000);
     }else{
       this.msgAdmin = 0;
+      setTimeout (() => {
+        this.msgAdmin = 0;
+      }, 5000);
     }
   }
 

@@ -44,41 +44,70 @@ export class MpCategoriasComponent implements OnInit {
   }
 
   agregarCat(){
-    console.log(this.categoria);
-
-    this.app.agregarCategoria(this.categoria).subscribe(
-      data => {
-        if(data){
-          this.CatAgregarEstadoMsg = 2;
-
-          this.categoria.Nombre = '';
-          this.categoria.NuevoNombre = '';
-        }else{
-          this.CatAgregarEstadoMsg = 1;
+    if(this.categoria.Nombre==''){
+      this.CatAgregarEstadoMsg = 4;
+      setTimeout (() => {
+        this.CatAgregarEstadoMsg = 0;
+      }, 5000);
+    }else{
+      this.app.agregarCategoria(this.categoria).subscribe(
+        data => {
+          if(data){
+            this.CatAgregarEstadoMsg = 2;
+            setTimeout (() => {
+              this.CatAgregarEstadoMsg = 0;
+            }, 5000);
+  
+            this.categoria.Nombre = '';
+            this.categoria.NuevoNombre = '';
+          }else{
+            this.CatAgregarEstadoMsg = 1;
+            setTimeout (() => {
+              this.CatAgregarEstadoMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.CatAgregarEstadoMsg = 3;
+          setTimeout (() => {
+            this.CatAgregarEstadoMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.CatAgregarEstadoMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   actualizarCat(){
     console.log(this.categoria);
-
-    this.app.updateCategoria(this.categoria).subscribe(
-      data => {
-        console.log(data);
-        if(data){
-          this.CatModificarEstadoMsg = 2;
-        }else{
-          this.CatModificarEstadoMsg = 1;
+    if(this.categoria.NuevoNombre==''){
+      this.CatModificarEstadoMsg = 4;
+      setTimeout (() => {
+        this.CatModificarEstadoMsg = 0;
+      }, 5000);
+    }else{
+      this.app.updateCategoria(this.categoria).subscribe(
+        data => {
+          console.log(data);
+          if(data){
+            this.CatModificarEstadoMsg = 2;
+            setTimeout (() => {
+              this.CatModificarEstadoMsg = 0;
+            }, 5000);
+          }else{
+            this.CatModificarEstadoMsg = 1;
+            setTimeout (() => {
+              this.CatModificarEstadoMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.CatModificarEstadoMsg = 3;
+          setTimeout (() => {
+            this.CatModificarEstadoMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.CatModificarEstadoMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   cargarUpdate(i){
@@ -102,6 +131,9 @@ export class MpCategoriasComponent implements OnInit {
       },
       error => {
         this.CatModificarEstadoMsg = 3;
+        setTimeout (() => {
+          this.CatModificarEstadoMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -120,6 +152,9 @@ export class MpCategoriasComponent implements OnInit {
       },
       error => {
         this.CatModificarEstadoMsg = 3;
+        setTimeout (() => {
+          this.CatModificarEstadoMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -145,6 +180,9 @@ export class MpCategoriasComponent implements OnInit {
         },
         error => {
           this.CatModificarEstadoMsg = 3;
+          setTimeout (() => {
+            this.CatModificarEstadoMsg = 0;
+          }, 5000);
         }
       );
       this.pest = 2;

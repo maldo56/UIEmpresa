@@ -87,21 +87,49 @@ export class MpProductosComponent implements OnInit {
   agregarProducto() {
     console.log(this.producto);
 
-    this.producto.Rut = this.session.Rut;
+    if(this.producto.Nombre==''){
+      this.AgregarMsg = 4;
+      setTimeout (() => {
+        this.AgregarMsg = 0;
+      }, 5000);
+    }else if(this.producto.Precio<=0 || this.producto.Volumen<=0 || this.producto.Peso<=0){
+      this.AgregarMsg = 5;
+      setTimeout (() => {
+        this.AgregarMsg = 0;
+      }, 5000);
+    }else if(this.producto.Categorias.length==0){
+      this.AgregarMsg = 6;
+      setTimeout (() => {
+        this.AgregarMsg = 0;
+      }, 5000);
+    }else{
+      this.producto.Rut = this.session.Rut;
 
-    this.app.agregarProducto(this.producto).subscribe(
-      data => {
-        if(data){
-          this.AgregarMsg = 2;
-          this.ObjProductoInicializar();
-        }else{
-          this.AgregarMsg = 1;
+      this.app.agregarProducto(this.producto).subscribe(
+        data => {
+          if(data){
+            this.AgregarMsg = 2;
+            
+            this.ObjProductoInicializar();
+
+            setTimeout (() => {
+              this.AgregarMsg = 0;
+            }, 5000);
+          }else{
+            this.AgregarMsg = 1;
+            setTimeout (() => {
+              this.AgregarMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.AgregarMsg = 3;
+          setTimeout (() => {
+            this.AgregarMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.AgregarMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   addOpcionalAtributteRow(){
@@ -131,6 +159,9 @@ export class MpProductosComponent implements OnInit {
       },
       error => {
         this.AgregarMsg = 3;
+        setTimeout (() => {
+          this.AgregarMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -149,6 +180,9 @@ export class MpProductosComponent implements OnInit {
       },
       error => {
         this.AgregarMsg = 3;
+        setTimeout (() => {
+          this.AgregarMsg = 0;
+        }, 5000);
       }
     );
   }

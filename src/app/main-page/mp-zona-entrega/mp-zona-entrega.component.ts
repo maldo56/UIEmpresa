@@ -172,6 +172,9 @@ export class MpZonaEntregaComponent implements OnInit {
       },
       error => {
         this.AgregarMsg = 3;
+        setTimeout (() => {
+          this.AgregarMsg = 0;
+        }, 5000);
       }
     );
   }
@@ -185,12 +188,21 @@ export class MpZonaEntregaComponent implements OnInit {
         console.log(data);
         if(data){
           this.AgregarMsg = 2;
+          setTimeout (() => {
+            this.AgregarMsg = 0;
+          }, 5000);
         }else{
           this.AgregarMsg = 1;
+          setTimeout (() => {
+            this.AgregarMsg = 0;
+          }, 5000);
         }
       },
       error => {
         this.AgregarMsg = 3;
+        setTimeout (() => {
+          this.AgregarMsg = 0;
+        }, 5000);
         console.log(error);
       }
     );

@@ -35,21 +35,38 @@ export class MpPaquetesComponent implements OnInit {
 
   agregarPaquete(){
     console.log(this.paquete);
-    
-    this.app.agregarPaquete(this.paquete).subscribe(
-      data => {
-        if(data){
-          this.PaqueteAgregarMsg = 2;
 
-          this.paquete.Tamanio = 0;
-        }else{
-          this.PaqueteAgregarMsg = 1;
+    if(this.paquete.Tamanio<=0 || this.paquete.Peso<=0){
+      this.PaqueteAgregarMsg = 4;
+      setTimeout (() => {
+        this.PaqueteAgregarMsg = 0;
+      }, 5000);
+    }else{
+      this.app.agregarPaquete(this.paquete).subscribe(
+        data => {
+          if(data){
+            this.PaqueteAgregarMsg = 2;
+            setTimeout (() => {
+              this.PaqueteAgregarMsg = 0;
+            }, 5000);
+  
+            this.paquete.Tamanio = 0;
+            this.paquete.Peso = 0;
+          }else{
+            this.PaqueteAgregarMsg = 1;
+            setTimeout (() => {
+              this.PaqueteAgregarMsg = 0;
+            }, 5000);
+          }
+        },
+        error => {
+          this.PaqueteAgregarMsg = 3;
+          setTimeout (() => {
+            this.PaqueteAgregarMsg = 0;
+          }, 5000);
         }
-      },
-      error => {
-        this.PaqueteAgregarMsg = 3;
-      }
-    );
+      );
+    }
   }
 
   setStyle(style){

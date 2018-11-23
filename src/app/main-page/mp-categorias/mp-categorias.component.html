@@ -11,11 +11,12 @@
   <div id="ContenedorForm">
     <div id="CatAgregar" *ngIf="pest==1">
       <div id="CatAgregarCont">
-        <label>Nombre de categoria: <input type="text" [(ngModel)]="categoria.Nombre"/></label> <br>
+        <label>Nombre de categoria: <input type="text" placeholder="Campo requerido" [(ngModel)]="categoria.Nombre"/></label> <br>
         <div id="CatAgregarMsg">
           <h1 *ngIf="CatAgregarEstadoMsg==1">La categoria ya existe</h1>
           <h2 *ngIf="CatAgregarEstadoMsg==2">Categoria agregada con exito</h2>
           <h1 *ngIf="CatAgregarEstadoMsg==3">Error al conectarse con el servidor</h1>
+          <h1 *ngIf="CatAgregarEstadoMsg==4">Hay campos requeridos</h1>
         </div>
         <button (click)="agregarCat()">Aceptar</button>
       </div>
@@ -35,13 +36,14 @@
           <button *ngIf="anterior" (click)="pageAnterior()">Anterior</button>
         </div>
         <div id="catUpForm" *ngIf="selected">
-            <label>Nuevo nombre: <input type="text" [(ngModel)]="categoria.NuevoNombre"/></label>
+            <label>Nuevo nombre: <input type="text" placeholder="Campo requerido" [(ngModel)]="categoria.NuevoNombre"/></label>
             <button (click)="actualizarCat()">Actualizar</button>
         </div>
         <div id="CatModificarMsg">
           <h1 *ngIf="CatModificarEstadoMsg==1">La categoria ya existe</h1>
           <h2 *ngIf="CatModificarEstadoMsg==2">Categoria modificada con exito</h2>
           <h1 *ngIf="CatModificarEstadoMsg==3">Error al conectarse con el servidor</h1>
+          <h1 *ngIf="CatModificarEstadoMsg==4">Hay campos requeridos</h1>
         </div>
       </div>
     </div>

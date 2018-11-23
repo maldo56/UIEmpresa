@@ -1,6 +1,8 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ControllerService } from '../controller.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'log-in',
@@ -57,6 +59,14 @@ console.log(this.formLogIn);
         console.log("Error");
         this.msgError = true;
         this.msgFailed = false;
+
+        interval(3000).subscribe(
+          ()=> {
+            this.msgError = false;
+            this.msgFailed = true;
+          }
+        )
+       
       }
     );
   }
