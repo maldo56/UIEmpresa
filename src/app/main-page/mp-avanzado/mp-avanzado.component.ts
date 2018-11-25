@@ -86,7 +86,7 @@ export class MpAvanzadoComponent implements OnInit {
       var elements = document.getElementsByName('inpAgregarUsuario');
 
       for(let x=0; x<elements.length; x++){
-        if(elements[x].value == ''){
+        if(elements[x].getAttribute('value') == ''){
           elements[x].setAttribute('placeholder', 'Campo requerido.');
         }else{
           elements[x].setAttribute('placeholder', '');

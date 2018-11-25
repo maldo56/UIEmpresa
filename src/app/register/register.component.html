@@ -2,53 +2,46 @@
   <div id="registerTitle">
     <h2>Registra tu empresa!:</h2>
   </div>
-  <div id="formContainer">
+  <div id="formContainer" *ngIf="ndiv==0">
     <div id="formdiv1">
-      <label>RUT: <input name="elementForm1" [(ngModel)]="auxRUT" type="number"/></label>
-      <label>Nombre: <input name="elementForm1" [(ngModel)]="formEmp.Nombre" type="text"/></label>
-      <label>URL: <input name="elementForm1" [(ngModel)]="formEmp.URLocator" type="text"/></label>
-      <label>Rubro: <select name="elementForm1" [(ngModel)]="formEmp.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label>
-      <label>Direccion: <input name="elementForm1" id="form1Direccion" [(ngModel)]="formEmp.Direccion" type="text" autocorrect="off" autocapitalize="off" spellcheck="off"/></label>
-      <label>Descripcion: <textarea name="elementForm1" [(ngModel)]="formEmp.Descripcion" rows="3" cols="25"></textarea></label>
+      <label>RUT: <input placeholder="Campo requerido" [(ngModel)]="auxRUT" type="number"/></label>
+      <label>Nombre: <input placeholder="Campo requerido" [(ngModel)]="formEmp.Nombre" type="text"/></label>
+      <label>URL: <input placeholder="Campo requerido" [(ngModel)]="formEmp.URLocator" type="text"/></label>
+      <label>Rubro: <select [(ngModel)]="formEmp.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label>
+      <label>Direccion: <input id="form1Direccion" type="text" autocorrect="off" autocapitalize="off" spellcheck="off"/></label>
+      <label>Descripcion: <textarea [(ngModel)]="formEmp.Descripcion" rows="3" cols="25"></textarea></label>
     </div>
+
     <div id="formdiv2">
       <div id="divimg">
+        <label>Sube tu logo!:</label>
         <img id="Image" src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #Img/>
       </div>
       <div id="divinpfile">
-        <label>Sube tu logo!:</label>
-        <input (change)="selectImg($event)" type="file" class="inptselect"/>
+        <label for="file">Elige una imagen</label>
+        <input (change)="selectImg($event)" type="file" name="file" class="inptselect"/>
       </div>
     </div>
+    
     <div id="formdiv3">
-      <h2 *ngIf="msgForm1">Hay campos requeridos</h2>
+      <div id="ContRegMsg">
+        <h2 *ngIf="msgForm1==1">Hay campos requeridos</h2>
+        <h2 *ngIf="msgForm1==2">Rut incorrecto</h2> 
+        <h2 *ngIf="msgForm1==3">Elija una direccion real</h2> 
+      </div>
       <button type="submit" (click)="siguiente()">Registrate</button>
     </div>
   </div>
 
-  <div id="divDatosUsuario">
+  <div id="divDatosUsuario" *ngIf="ndiv==1">
     <div id="userTitle">
       <h2>Crea tu usuario administrador:</h2>
     </div>
     <div id="tableuserCont">
-      <table id="userTable">
-          <tr>
-              <td>Nombre:</td>
-              <td> <input name="elementForm2" [(ngModel)]="formEmp.UserName" type="text"/> </td>
-            </tr>
-        <tr>
-          <td>Usuario:</td>
-          <td> <input name="elementForm2" [(ngModel)]="formEmp.User" type="text"/> </td>
-        </tr>
-        <tr>
-          <td>Contraseña:</td>
-          <td> <input name="elementForm2" [(ngModel)]="auxPass" type="password"/> </td>
-        </tr>
-        <tr>
-          <td>Repetir contraseña:</td>
-          <td> <input name="elementForm2" [(ngModel)]="confpass" type="password"/> </td>
-        </tr>
-      </table>
+      <label>Nombre: <input placeholder="Campo requerido" [(ngModel)]="formEmp.UserName" type="text"/></label>
+      <label>Usuario: <input placeholder="Campo requerido" [(ngModel)]="formEmp.User" type="text"/></label>
+      <label>Contraseña: <input placeholder="Campo requerido" [(ngModel)]="auxPass" type="password"/></label>
+      <label>Repetir contraseña: <input placeholder="Campo requerido" [(ngModel)]="confpass" type="password"/></label>
     </div>
     <div id="userBtn">
       <div id="contMsg">
@@ -56,8 +49,8 @@
         <h2 *ngIf="RegEstadoMsg==2">Las contraseñas no coninciden</h2>
         <h2 *ngIf="RegEstadoMsg==3">Error al conectarse con el servidor</h2>
       </div>
-      <button routerLink="/LogIn" (click)="cancelar()">Cancelar</button>
       <button (click)="enviarDatos()">Registrate</button>
+      <button routerLink="/LogIn" (click)="cancelar()">Cancelar</button>
     </div>
   </div>
 </div>

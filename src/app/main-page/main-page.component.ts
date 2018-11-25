@@ -14,6 +14,8 @@ export class MainPageComponent implements OnInit {
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
+      console.log("session: ", this.session);
+
       if(sessionStorage.getItem('control')==null){
         sessionStorage.setItem('control', '1');
         this.router.navigateByUrl('/mainPage/Inicio');

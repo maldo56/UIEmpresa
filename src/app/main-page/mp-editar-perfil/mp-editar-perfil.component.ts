@@ -344,7 +344,7 @@ export class MpEditarPerfilComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         let imagen = reader.result;
-        this.general.Logo = imagen.toString().substr(22);
+        this.general.Logo = imagen.toString();
 
         this.renderer.setAttribute(this.ImgTag.nativeElement, 'src', imagen.toString());
       }

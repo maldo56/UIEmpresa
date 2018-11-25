@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { ControllerService } from '../controller.service';
@@ -39,7 +39,8 @@ export class RegisterComponent implements OnInit {
   confpass : '';
 
   RegEstadoMsg : number = 0;
-  msgForm1 : boolean = false;
+  msgForm1 : number = 0;
+  ndiv : number = 0;
 
   rubros: any;
 
@@ -75,32 +76,29 @@ export class RegisterComponent implements OnInit {
   }
 
   siguiente(){
-    if(this.validForm()){
-      var div1 = document.getElementById('formContainer');
-      div1.style.display = 'none';
+    this.validForm();
 
-      var div2 = document.getElementById('divDatosUsuario');
-      div2.style.display = 'block';
-    }else{
-      this.msgForm1 = true;
+    if(this.msgForm1==0){
+      this.ndiv = 1;
     }
   }
 
   enviarDatos(){
-    const options = {
-      headers: {
-        'Content-Type': 'application/json'
+
+    this.validUser();
+
+    if(this.RegEstadoMsg==0){
+      const options = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    }
+  
+      this.formEmp.Direccion = ubicacion.Direccion;
+      this.formEmp.lat = ubicacion.lat;
+      this.formEmp.lng = ubicacion.lng;
+      this.formEmp.Rut = this.auxRUT.toString();
 
-    this.formEmp.Direccion = ubicacion.Direccion;
-    this.formEmp.lat = ubicacion.lat;
-    this.formEmp.lng = ubicacion.lng;
-    
-    this.formEmp.Rut = this.auxRUT.toString();
-    console.log(this.formEmp);
-
-    if(this.validUser()){
       this.formEmp.Pass = this.SHA256(this.confpass);
       this.app.RegistrarEmpresa(this.formEmp).subscribe(
         data => {
@@ -132,43 +130,42 @@ export class RegisterComponent implements OnInit {
   }
 
   validUser(){
-    var elements = document.getElementsByName('elementForm2');
-    var aux;
-    var valid = true;
-    for(let x=0;x<elements.length;x++){
-      aux = elements[x];
-      if(aux.value==''){
-        aux.setAttribute('class', 'require');
-        valid = false;
-      }else{
-        aux.removeAttribute('class', 'require');
-      }
+    if(this.formEmp.UserName=='' || this.formEmp.User=='' || this.auxPass==undefined || this.confpass==undefined){
+      console.log("entra 1");
+      this.RegEstadoMsg = 1;
+      setTimeout (() => {
+        this.RegEstadoMsg = 10;
+      }, 5000);
+    }else if(this.auxPass!=this.confpass){
+      console.log("entra 2");
+      this.RegEstadoMsg = 2;
+      setTimeout (() => {
+        this.RegEstadoMsg = 10;
+      }, 5000);
+    }else{
+      this.RegEstadoMsg = 0;
     }
-    // if(!valid){
-    //   this.RegEstadoMsg = 1;
-    // }else{
-    //   if(elements[2]!=elements[3]){
-    //     this.RegEstadoMsg = 2;
-    //     return false;
-    //   }
-    // }
-    return valid;
   }
 
   validForm(){
-    var elements = document.getElementsByName('elementForm1');
-    var aux;
-    var valid = true;
-    for(let x=0;x<elements.length;x++){
-      aux = elements[x];
-      if(aux.value==''){
-        aux.setAttribute('class', 'require');
-        valid = false;
-      }else{
-        aux.removeAttribute('class', 'require');
-      }
+    if(this.formEmp.Nombre=='' || this.formEmp.URLocator==''){
+      this.msgForm1=1;
+      setTimeout (() => {
+        this.msgForm1 = 10;
+      }, 5000);
+    }else if(ubicacion.Direccion==''){
+      this.msgForm1=3;
+      setTimeout (() => {
+        this.msgForm1 = 10;
+      }, 5000);
+    }else if(this.auxRUT==undefined || this.auxRUT.toString().length!=12){
+      this.msgForm1=2;
+      setTimeout (() => {
+        this.msgForm1 = 10;
+      }, 5000);
+    }else{
+      this.msgForm1=0;
     }
-    return valid;
   }
 
   selectImg(event){
