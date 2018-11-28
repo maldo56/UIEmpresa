@@ -12,8 +12,8 @@ export class ControllerService {
     }
   }
 
-  host : string = 'localhost:51532';
-  // host : string = '192.168.1.43';
+  // host : string = 'localhost:51532';
+  host : string = '192.168.1.45';
   
   constructor(private http:HttpClient) { }
 
@@ -95,5 +95,25 @@ export class ControllerService {
 
   inicio(rut : string, usuario : string){
     return this.http.get('http://'+this.host+'/api/Empresa/inicio?rut='+rut+'&usuario='+usuario);
+  }
+
+  desactivarUsuario(rut : string, usuario : string){
+    return this.http.post('http://'+this.host+'/api/Empresa/desactivarUsuario?rut='+rut+'&usuario='+usuario, this.options);
+  }
+
+  desactivarEmpresa(rut : string){
+    return this.http.post('http://'+this.host+'/api/Empresa/desactivarEmpresa?rut='+rut, this.options);
+  }
+
+  activarEmpresa(rut : string){
+    return this.http.post('http://'+this.host+'/api/Empresa/activarEmpresa?rut='+rut, this.options);
+  }
+
+  listarOrdenes(rut, skip, pagesize){
+    return this.http.get('http://'+this.host+'/api/Empresa/listarOrdenes?rut='+rut+'&skip='+skip+'&take='+pagesize);
+  }
+  
+  cambiarEstado(orden : string, estado : string){
+    return this.http.post('http://'+this.host+'/api/Empresa/cambiarEstado?Orden='+orden+'&Estado='+estado, this.options);
   }
 }

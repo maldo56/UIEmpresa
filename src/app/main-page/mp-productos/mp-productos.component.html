@@ -16,6 +16,8 @@
         <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"><option value="1">$</option><option value="2">U$S</option></select></div> </label> <br>
         <label>Volumen (m<SUP>3</SUP>): <input type="number" min="0" [(ngModel)]="producto.Volumen"/></label> <br>
         <label>Peso (kg): <input type="number" min="0" [(ngModel)]="producto.Peso"></label> <br>
+        <label>Puntos para promo: <input type="number" [(ngModel)]="producto.Puntos" /></label> <br>
+        <!-- <label>Stock inicial: <input type="text" [(ngModel)]="producto.Stock" /></label> <br> -->
         <label>Descripcion: <textarea rows="3" cols="25" [(ngModel)]="producto.Descripcion"></textarea></label> <br>
         
         <label>Categoria: <table id="tableAgregtarCategoria"> 
@@ -44,7 +46,7 @@
         <div id="agregarImagenes">
           <div id="imgListCont">
             <div *ngFor="let c of producto.Imagenes; let i = index">
-              <img src="{{c}}"/>
+              <img id="imgProd" src="{{c}}"/>
             </div>
           </div>
           <div id="newImgCont">
@@ -65,6 +67,7 @@
           <h1 *ngIf="AgregarMsg==4">Hay campos requeridos</h1>
           <h1 *ngIf="AgregarMsg==5">Precio, volumen y peso deben ser mayores a 0</h1>
           <h1 *ngIf="AgregarMsg==6">Se debe definir al menos una categoria para el producto</h1>
+          <h1 *ngIf="AgregarMsg==7">El puntaje y estock inicial no pueden ser menores a 0</h1>
         </div>
         
       </div>
@@ -110,5 +113,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>

@@ -4,12 +4,65 @@
     </div>
     <div id="contBarSup">
       <div id="pestañas">
-        <a (click)="changeP('p1');">Agregar</a>
-        <a (click)="changeP('p2');">Modificar</a>
+        <!-- <a (click)="changeP('p1');">Agregar</a>
+        <a (click)="changeP('p2');">Modificar</a> -->
       </div>
     </div>
 
+    <div id="ContenedorForm">
+      <div id="ContOrdenes">
+        <table>
+          <tr><th>Fecha/hora</th> <th>Contacto</th> <th>Precio</th> <th>Estado</th> <th>Comision</th> <th>Productos</th> </tr>
 
+          <tr *ngFor="let x of ordenes; let i = index" (click)="cargarOrden(i)">
+            <td>{{x.stringDate}}</td>
+            <td>{{x.EmailCliente}}</td>
+            <td>{{x.Precio}} USD</td>
+            <td *ngIf="x.NombreEstado=='NULL'">No asignado</td>
+            <td *ngIf="x.NombreEstado!='NULL'">{{x.NombreEstado}}</td>
+            <td>{{x.Comision}}</td>
+            <td>{{x.Productos.length}}</td>
+          </tr>
+        </table>
 
+        <div id="TableButtons">
+          <button (click)="pageordenSiguiente()" *ngIf="ordenSiguiente">></button>
+          <button (click)="pageordenAnterior()" *ngIf="ordenAnterior"><</button>
+        </div>
+      </div>
 
+      <div id="Panel">
+        <label>Fecha/Hora: </label> <label>{{ordenSelect.stringDate}}</label> <br>
+        <label>Contacto: </label> <label>{{ordenSelect.EmailCliente}}</label> <br>
+        <label>Direccion: </label> <label>{{ordenSelect.Direccion}}</label> <br>
+        <label>Precio: </label> <label>{{ordenSelect.Precio}}</label> <br>
+        <label>Moneda: </label> <label>{{ordenSelect.TipoMoneda}}</label> <br>
+        <label>Peso: </label> <label>{{ordenSelect.Peso}}</label> <br>
+        <label>Volumen: </label> <label>{{ordenSelect.Volumen}}</label> <br>
+        <label>Comision: </label> <label>{{ordenSelect.Comision}}</label> <br>
+        <label style="display: inline-block; float: left;">Productos:</label> <ul style="display: inline-block"> <li *ngFor="let x of productosOrden"> {{x.NombreProducto}} - {{x.Precio}}</li> </ul>
+      
+        <div id="ChangeEstado">
+          <label>Estado actual: </label> <label>{{estadoActual.Nombre}}</label><br><br><br>
+          <label style="display: inline-block; float: left;">Selecciona un nuevo estado;</label>
+          <ul style="display: inline-block"> 
+            <li *ngFor="let x of estados; let i = index" (click)="seleccionarEstado(i)"> {{x.Nombre}} </li>
+          </ul>
+
+          <div id="ListButtons">
+            <button *ngIf="estadoAnterior"  (click)="pageestadoAnterior()"><</button>
+            <button *ngIf="estadoSiguiente" (click)="pageestadoSiguiente()">></button>
+          </div>
+        </div>
+
+        <div id="BtnSubmit">
+          <button (click)="submit()">Aceptar cambios</button>
+        </div>
+      </div>
+
+      <div id="EstadoModificarMsg">
+        <h2 *ngIf="ModificarEstadoMsg==1">Estado modificado con exito</h2>
+        <h1 *ngIf="ModificarEstadoMsg==2">Error al conectarse con el servidor</h1>
+      </div>
+    </div>
 </div>

@@ -150,13 +150,14 @@ export class MpZonaEntregaComponent implements OnInit {
         zonasAux = data;
 
         for(let x=0; x<zonasAux.length; x++){
+          console.log(zonasAux[x].puntos.length);
           zonasEntrega = zonasAux[x].puntos;
 
           for(let y=0; y<zonasEntrega.length; y++){
             total.push({ lat: +zonasEntrega[y].lat, lng: +zonasEntrega[y].lng});
           }
 
-          allPolygons.push(polygon = new google.maps.Polygon({
+          allPolygons.push(new google.maps.Polygon({
             path: total
           }));
           // polygon.setMap(this.map);

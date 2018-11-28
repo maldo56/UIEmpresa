@@ -100,6 +100,9 @@ export class RegisterComponent implements OnInit {
       this.formEmp.Rut = this.auxRUT.toString();
 
       this.formEmp.Pass = this.SHA256(this.confpass);
+
+      console.log(this.formEmp);
+
       this.app.RegistrarEmpresa(this.formEmp).subscribe(
         data => {
           console.log(data);
@@ -175,7 +178,7 @@ export class RegisterComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {
         let imagen = reader.result;
-        this.formEmp.Logo = imagen.toString().substr(22);
+        this.formEmp.Logo = imagen.toString();
 
         var img = document.getElementById('Image');
         img.setAttribute('src', imagen.toString());

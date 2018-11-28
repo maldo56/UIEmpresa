@@ -11,6 +11,9 @@ export class MpAvanzadoComponent implements OnInit {
 
   pest : number = 1;
   msgAdmin : number = 0;
+  msgDesactUsuario : number = 0;
+  msgDesactEmpresa : number = 0;
+  msgActEmpresa : number = 0;
 
   admin = {
     Email : '',
@@ -64,6 +67,8 @@ export class MpAvanzadoComponent implements OnInit {
           this.admin.Usuario = '';
           this.admin.Clave = '';
           this.admin.Email = '';
+          this.auxPsw1 = '';
+          this.auxPsw2 = '';
         },
         error => {
           console.log(error);
@@ -104,6 +109,78 @@ export class MpAvanzadoComponent implements OnInit {
         this.msgAdmin = 0;
       }, 5000);
     }
+  }
+
+  desactivarUsuario(){
+    console.log(this.session.Rut, this.session.Usuario);
+
+    this.app.desactivarUsuario(this.session.Rut, this.session.Usuario).subscribe(
+      data => {
+        if(data) {
+          sessionStorage.removeItem('session');
+          sessionStorage.removeItem('control');
+
+          document.getElementById('btnCerrarSession').style.display = 'none';
+
+          this.router.navigateByUrl('/LogIn');
+        }else{
+          this.msgDesactUsuario = 1;
+          setTimeout (() => {
+            this.msgDesactUsuario = 0;
+          }, 5000);
+        }
+      },
+      error => {
+        this.msgDesactUsuario = 2;
+        setTimeout (() => {
+          this.msgDesactUsuario = 0;
+        }, 5000);
+      }
+    );
+  }
+
+  desactivarEmpresa(){
+
+    this.app.desactivarEmpresa(this.session.Rut).subscribe(
+      data => {
+        console.log(data);
+        if(data){
+          this.session.Activo = false;
+        }else{
+          this.msgDesactEmpresa = 1;
+          setTimeout (() => {
+            this.msgDesactEmpresa = 0;
+          }, 5000);
+        }
+      },
+      error => {
+        this.msgDesactEmpresa = 1;
+        setTimeout (() => {
+          this.msgDesactEmpresa = 0;
+        }, 5000);
+      }
+    );
+  }
+
+  activarEmpresa(){
+    this.app.activarEmpresa(this.session.Rut).subscribe(
+      data => {
+        if(data){
+          this.session.Activo = true;
+        }else{
+          this.msgActEmpresa = 1;
+          setTimeout (() => {
+            this.msgActEmpresa = 0;
+          }, 5000);
+        }
+      },
+      error => {
+        this.msgActEmpresa = 1;
+        setTimeout (() => {
+          this.msgActEmpresa = 0;
+        }, 5000);
+      }
+    );
   }
 
   changeP(cod){

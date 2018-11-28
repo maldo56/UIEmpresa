@@ -31,5 +31,42 @@
         
       </div>
 
+      <div id="DesactivarCuenta" *ngIf="pest==2">
+        <div *ngIf="session.Activo">
+          <p>
+            Puede volver a activar su cuenta nuevamente iniciando sesion con cualquiera
+            de sus usuarios.
+            Mientras su empresa este desactivada sus productos no se mostraran al publico.
+          </p>
+          <button (click)="desactivarEmpresa()">Desactivar empresa</button> <br>
+          <div id="desactEmpresaMsg">
+            <h1 *ngIf="msgDesactEmpresa==1">Error al conectarse con el servidor</h1>
+          </div>
+        </div>
+
+        <div *ngIf="!session.Activo">
+          <p>
+            Active su cuenta!
+            Mientras su empresa este desactivada sus productos no se mostraran al publico.
+          </p>
+          <button (click)="activarEmpresa()">Activar empresa</button> <br>
+          <div id="activarEmpresaMsg">
+            <h1 *ngIf="msgActEmpresa==1">Error al conectarse con el servidor</h1>
+            <h2 *ngIf="msgActEmpresa==2">Empresa activada con exito</h2>
+          </div>
+        </div>
+
+        <div>
+          <p>
+            Una vez que desactives tu usuario no podras volver a iniciar sesion con el.
+          </p>
+          <button (click)="desactivarUsuario()">Desactivar usuario</button>
+          <div id="desactUsuarioMsg">
+              <h1 *ngIf="msgDesactUsuario==1">Es su unico usuario para esta empresa</h1>
+              <h1 *ngIf="msgDesactUsuario==2">Error al conectarse con el servidor</h1>
+            </div>
+        </div>
+      </div>
+
     </div>
 </div>

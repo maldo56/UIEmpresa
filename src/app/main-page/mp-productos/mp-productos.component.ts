@@ -42,6 +42,8 @@ export class MpProductosComponent implements OnInit {
     Moneda : 1,
     Volumen : 0,
     Peso : 0,
+    Puntos : 0,
+    Stock : 0,
     Descripcion : '',
     Categorias : new Array<OpcionalAtributte>(),
     Opcionales : new Array<OpcionalAtributte>(),
@@ -55,6 +57,8 @@ export class MpProductosComponent implements OnInit {
   auxAttOpcionales : any;
 
   session : any;
+
+  hayImg : boolean = false;
 
   constructor(private router: Router, private app:ControllerService) { 
     if(sessionStorage.getItem('session')!=null){
@@ -102,6 +106,11 @@ export class MpProductosComponent implements OnInit {
       setTimeout (() => {
         this.AgregarMsg = 0;
       }, 5000);
+    }else if(this.producto.Puntos<0 || this.producto.Stock<0){
+      this.AgregarMsg = 7;
+      setTimeout (() => {
+        this.AgregarMsg = 0;
+      }, 5000);
     }else{
       this.producto.Rut = this.session.Rut;
 
@@ -141,8 +150,12 @@ export class MpProductosComponent implements OnInit {
   }
 
   agregarImgBuffer(){
-    this.producto.Imagenes.push(this.ImgActual);
-    this.ImgActual = 'https://res.cloudinary.com/dnieertcs/image/upload/v1541794651/Empresa-Default.jpg';
+    if(this.hayImg){
+      this.producto.Imagenes.push(this.ImgActual);
+      this.ImgActual = 'https://res.cloudinary.com/dnieertcs/image/upload/v1541794651/Empresa-Default.jpg';
+    }
+
+    this.hayImg = false;
   }
 
   pageSiguiente() {
@@ -207,6 +220,7 @@ export class MpProductosComponent implements OnInit {
       reader.onload = () => {
         let imagen = reader.result;
         this.ImgActual = imagen.toString();
+        this.hayImg = true;
       }
     }
   }

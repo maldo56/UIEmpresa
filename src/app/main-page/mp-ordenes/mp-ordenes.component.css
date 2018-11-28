@@ -32,3 +32,108 @@
 
     border: 1px solid black;
 }
+
+/* ----------------------CONTENIDO----------------------- */
+
+#ContOrdenes {
+    width: 100%;
+
+}
+
+#ContOrdenes table {
+    width: 100%;
+    font-size: 20px;
+}
+
+#ContOrdenes tr {
+    margin-top: 5%;
+}
+
+#ContOrdenes tr:hover {
+    color: brown;
+}
+
+#ContOrdenes th {
+    width: 16%;
+    text-align: center;
+}
+
+#ContOrdenes td {
+    width: 16%;
+    font-size: 15px;
+    text-align: center;
+}
+
+#TableButtons {
+    margin-top: 2%;
+    margin-right: 2%;
+}
+
+#TableButtons button {
+    float: right;
+    margin-right: 3%;
+}
+
+#Panel {
+    width: 70%;
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: 20px;
+    display: none;
+}
+
+#Panel label {
+    width: 40%;
+}
+
+#Panel li{
+    /* margin-left: 40%; */
+}
+
+#ChangeEstado {
+    margin-top: 2%;
+}
+
+#ChangeEstado ul{
+    margin-top: 2%;
+}
+
+#ChangeEstado li:hover{
+    color: brown;
+}
+
+#ListButtons {
+    margin-top: 5%;
+    margin-left: 40%;
+}
+
+#ListButtons button{
+    margin-left: 10%;
+}
+
+#BtnSubmit button{
+    float: right;
+    margin-top: 5%;
+    margin-right: 10%;
+}
+
+#EstadoModificarMsg{
+    height: 30px;
+    margin-top: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+#EstadoModificarMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#EstadoModificarMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}

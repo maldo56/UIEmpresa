@@ -36,8 +36,9 @@ export class LogInComponent implements OnInit {
 
   logIn(){
     this.formLogIn.pass = this.SHA256(this.auxPass);
+    // this.formLogIn.pass = this.auxPass;
 
-console.log(this.formLogIn);
+    console.log(this.formLogIn);
 
     this.api.LogIn(this.formLogIn).subscribe(
       (data: Response) => {

@@ -70,6 +70,67 @@
     float: right;
 }
 
+/* ------------------DESACTIVAR CUENTA-------------- */
+
+#DesactivarCuenta {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#DesactivarCuenta p{
+    margin-top: 5%;
+    font-size: 25px;
+}
+
+#desactEmpresaMsg{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#desactEmpresaMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#desactUsuarioMsg{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#desactUsuarioMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#activarEmpresaMsg{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#activarEmpresaMsg h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#activarEmpresaMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}
+
 /* ------------------MENSAJES DE ERROR-------------- */
 
 #AddUsuarioMsg{
