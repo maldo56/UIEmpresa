@@ -67,7 +67,7 @@ export class MpZonaEntregaComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
 
   ngAfterViewInit(): void {
@@ -207,11 +207,5 @@ export class MpZonaEntregaComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('DivBtn').setAttribute('class', style+'Form');
   }
 }

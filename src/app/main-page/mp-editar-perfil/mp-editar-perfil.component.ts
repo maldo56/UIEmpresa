@@ -47,11 +47,14 @@ export class MpEditarPerfilComponent implements OnInit {
   usuarioAuxNewPass : '';
   usuarioVerifPass : '';
   usuarioSubDiv : boolean = true;
+  auxTema : number = 0;
 
   pest: number = 1;
   session: any;
   rubros: any;
   map : any;
+
+  estilos : any;
 
   UsuarioErrorMsg: number = 0;
   msgUpPerfilGeneral : number = 0;
@@ -77,7 +80,12 @@ export class MpEditarPerfilComponent implements OnInit {
       this.general.URLocator = this.session.URLocator;
       this.general.Tema = this.session.Tema;
 
-      this.usuario.NombreAdmin = this.session.NombreAdmin;
+      if(this.session.NombreAdmin==null){
+        this.usuario.NombreAdmin = this.session.UserName;
+      }else{
+        this.usuario.NombreAdmin = this.session.NombreAdmin;
+      }
+      
       this.usuario.Email = this.session.Email;
       this.usuario.Usuario = this.session.Usuario;
 
@@ -92,13 +100,26 @@ export class MpEditarPerfilComponent implements OnInit {
           this.rubros = res;
         }
       );
+
+      console.log(this.session.Rut);
+
+      this.app.getTemas(this.session.Rut).subscribe(
+        data => {
+          console.log(data);
+
+          this.estilos = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }else{
       this.router.navigateByUrl('/LogIn');
     }
   }
 
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
 
   ngAfterViewInit(): void {
@@ -273,6 +294,8 @@ export class MpEditarPerfilComponent implements OnInit {
             'Content-Type': 'application/json'
           }
         }
+
+        this.general.Tema = this.estilos[this.auxTema].Nombre;
 
         console.log(this.general);
 
@@ -474,21 +497,30 @@ export class MpEditarPerfilComponent implements OnInit {
    }
 
   verTema(){
-    var style = this.general.Tema;
-    console.log(style);
-    document.getElementsByTagName('body')[0].setAttribute('class', style+'body');
-    document.getElementById('barracontainer').setAttribute('class', style+'SupBar');
-    document.getElementById('divImg').setAttribute('class', style+'Img');
-    document.getElementById('Menu').setAttribute('class', style+'Menu');
-    document.getElementById('contenedor').setAttribute('class', style+'contenedor');
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
-  }
+    
+    document.getElementsByTagName('body')[0].style.fontFamily = this.estilos[this.auxTema].letra;
+    document.getElementsByTagName('body')[0].style.backgroundImage = 'url('+this.estilos[this.auxTema].fondo+')';
+    document.getElementById('contenedor').style.backgroundColor = this.estilos[this.auxTema].color1;
+    document.getElementById('contNav').style.backgroundColor = this.estilos[this.auxTema].color2;
+    document.getElementById('pestañas').style.backgroundColor = this.estilos[this.auxTema].color2;
+    document.getElementById('barracontainer').style.backgroundColor = this.estilos[this.auxTema].color3;
+    document.getElementsByTagName('body')[0].style.color = this.estilos[this.auxTema].colorTexto1;
 
-   setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
+    var div = document.getElementById('pestañas');
+
+    var a = div.getElementsByTagName('a');
+
+    for(let x=0; x<a.length; x++){
+      a[x].style.color = this.estilos[this.auxTema].colorTexto2;
+    }
+
+    var div2 = document.getElementById('Menu');
+
+    var a2 = div2.getElementsByTagName('a');
+
+    for(let x=0; x<a2.length; x++){
+      a2[x].style.color = this.estilos[this.auxTema].colorTexto2;
+    }
+    
   }
 }

@@ -32,6 +32,20 @@
     padding-left: 6%;
 }
 
+#pestañas a {
+    color: black;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+
+    padding: 10px;
+}
+#pestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+
 /* ---------------------------------------------------------------- */
 
 #Agregar {
@@ -335,4 +349,25 @@
     height: 30px;
     font-size: inherit;
     margin-right: 5%;
+}
+
+#MsgModificarProd{
+    height: 30px;
+    margin-top: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+#MsgModificarProd h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#MsgModificarProd h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
 }

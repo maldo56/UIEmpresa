@@ -30,7 +30,8 @@ export class RegisterComponent implements OnInit {
     Pass : '',
     Logo: '',
     lat: '',
-    lng: ''
+    lng: '',
+    Tema: ''
   }
 
   auxPass:'';
@@ -45,6 +46,10 @@ export class RegisterComponent implements OnInit {
   rubros: any;
 
   constructor(private router: Router, private app:ControllerService) { 
+
+    document.getElementsByTagName('body')[0].setAttribute('class', 'defaultbody');
+    document.getElementById('barracontainer').setAttribute('class', 'defaultSupBar');
+
     this.app.getAllRubros().subscribe(
       (res: Response) => {
         
@@ -108,7 +113,9 @@ export class RegisterComponent implements OnInit {
           console.log(data);
           if(data!='false'){
             this.formEmp.Logo = data.toString();
+            this.formEmp.Tema = 'default';
             sessionStorage.setItem('session', JSON.stringify(this.formEmp));
+            sessionStorage.setItem('Inicio', '1');
             this.router.navigateByUrl('/mainPage');
           }else{
             console.log('Da false');

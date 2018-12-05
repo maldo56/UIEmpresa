@@ -23,6 +23,10 @@ export class LogInComponent implements OnInit {
   msgFailed : boolean;
 
   constructor(private router: Router, private api:ControllerService) {
+
+    document.getElementsByTagName('body')[0].setAttribute('class', 'defaultbody');
+    document.getElementById('barracontainer').setAttribute('class', 'defaultSupBar');
+
     if(sessionStorage.getItem('session')==null){
       this.msgError = false;
       this.msgFailed = false;
@@ -49,7 +53,6 @@ export class LogInComponent implements OnInit {
         if(data!=null){
           sessionStorage.setItem('session', JSON.stringify(data));
           // this.router.navigateByUrl("http://www.canarias.com.uy/mainPage");
-          document.getElementById('btnCerrarSession').style.display = 'block';
           this.router.navigateByUrl('/mainPage');
         }else{
           this.msgError = false;

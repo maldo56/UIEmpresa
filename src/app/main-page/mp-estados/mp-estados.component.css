@@ -33,6 +33,20 @@
     border: 1px solid black;
 }
 
+#pestañas a {
+    color: black;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+
+    padding: 10px;
+}
+#pestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+
 #Agregar {
     width: 100%;
     padding-left: 5%;

@@ -33,6 +33,21 @@
     border: 1px solid black;
 }
 
+#pestañas a {
+    color: black;
+    margin-left: 1%;
+    margin-right: 1%;
+
+    font-size: 200%;
+
+    padding: 10px;
+}
+
+#pestañas a:hover {
+    color: brown;
+    text-decoration: none;
+}
+
 /* --------------------AGREGAR USUARIO------------------- */
 
 #AgregarUsuario {
@@ -148,6 +163,66 @@
 }
 
 #AddUsuarioMsg h2{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: green;
+}
+
+/* -------------------------ESTILO---------------------- */
+
+#Estilo {
+    width: 70%;
+    margin-left: 10%;
+    margin-top: 6%;
+    line-height: 40px;
+}
+
+#Estilo label {
+    width: 40%;
+    font-size: 22px;
+}
+
+#Estilo select {
+    width: 30%;
+    font-size: 18px;
+}
+
+#Estilo input{
+    width: 30%;
+    height: 28px;
+    display: inline-block;
+}
+
+#styleButton {
+    margin-top: 4%;
+    margin-right: 10%;
+}
+
+#styleButton button {
+    height: 33px;
+    width: 75px;
+    float: right;
+    line-height: 30px;
+}
+
+/* ----------------------------------------------------- */
+
+#MsgEstilo{
+    height: 30px;
+    margin-top: 3%;
+    width: 80%;
+    text-align: center;
+}
+
+#MsgEstilo h1{
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+    color: red;
+}
+
+#MsgEstilo h2{
     margin: 0%;
     padding: 0%;
     font-size: 25px;

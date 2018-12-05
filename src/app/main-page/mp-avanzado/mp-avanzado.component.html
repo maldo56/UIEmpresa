@@ -6,6 +6,7 @@
       <div id="pestañas">
         <a (click)="changeP('p1');">Agregar usuario</a>
         <a (click)="changeP('p2');">Desactivar cuenta</a>
+        <a (click)="changeP('p3');">Agregar Estilo</a>
       </div>
     </div>
     <div id="ContenedorForm">
@@ -65,6 +66,29 @@
               <h1 *ngIf="msgDesactUsuario==1">Es su unico usuario para esta empresa</h1>
               <h1 *ngIf="msgDesactUsuario==2">Error al conectarse con el servidor</h1>
             </div>
+        </div>
+      </div>
+
+      <div id="Estilo" *ngIf="pest==3">
+        <label>Nombre: </label> <input type="text" [(ngModel)]="style.Nombre"/> <br>
+        <label>Color primario: </label> <input type="color" (change)="styleColor1()" [(ngModel)]="style.color1"/> <br>
+        <label>Color secundario: </label> <input type="color" (change)="styleColor2()" [(ngModel)]="style.color2"/> <br>
+        <label>Color terciario: </label> <input type="color" (change)="styleColor3()" [(ngModel)]="style.color3"/> <br>
+        <label>Tipo de letra: </label> <select [(ngModel)]="style.letra" (change)="styleLetra()"> <option *ngFor="let x of fuentes">{{x}}</option> </select> <br>
+        <label>Color texto 1: </label> <input type="color" (change)="stylecolorTexto1()" [(ngModel)]="style.colorTexto1"/> <br>
+        <label>Color texto 2: </label> <input type="color" (change)="stylecolorTexto2()" [(ngModel)]="style.colorTexto2"/> <br>
+        <label>Fondo: </label> <input style="color: transparent;" type="file" (change)="styleFondo($event)"/> <br>
+
+        <div id="MsgEstilo">
+          <h2 *ngIf="MsgEstilo==1">Estilo agregado con exito</h2>
+          <h1 *ngIf="MsgEstilo==2">Error al conectarse con el servidor</h1>
+          <h1 *ngIf="MsgEstilo==3">El estilo debe tener un nombre</h1>
+          <h1 *ngIf="MsgEstilo==4">Error al agregar el estilo</h1>
+        </div>
+
+        <div id="styleButton">
+          <button (click)="revert()">Revertir</button>
+          <button (click)="aceptarCambios()">Aceptar</button>
         </div>
       </div>
 

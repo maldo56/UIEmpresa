@@ -9,6 +9,8 @@ import { ControllerService } from 'src/app/controller.service';
 })
 export class InicioComponent implements OnInit {
 
+  usuario : '';
+
   session : any;
   reportes : any;
 
@@ -16,28 +18,35 @@ export class InicioComponent implements OnInit {
     if(sessionStorage.getItem('session')!=null){
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
-      this.app.inicio(this.session.Rut, this.session.Usuario).subscribe(
-        data => {
-          console.log(data);
-          this.reportes = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      if(sessionStorage.getItem('Inicio')=='1'){
+        this.app.inicio(this.session.Rut, this.session.Usuario).subscribe(
+          data => {
+            console.log(data);
+            this.reportes = data;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }else{
+        sessionStorage.setItem('Inicio', '1');
+        this.reportes = this.session.reportes;
+      }
+        
+      if(this.session.Usuario==null){
+        this.usuario = this.session.User;
+      }else{
+        this.usuario = this.session.Usuario;
+      }
+
     }else{
       this.router.navigateByUrl('/LogIn');
     }
+
+
   }
 
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
-
-  setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
-  }
-
 }

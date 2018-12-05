@@ -41,7 +41,7 @@ export class MpEstadosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
 
   agregarEstado(){
@@ -190,11 +190,5 @@ export class MpEstadosComponent implements OnInit {
       );
       this.pest = 2;
     }
-  }
-
-  setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
   }
 }

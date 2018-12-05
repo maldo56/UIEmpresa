@@ -1,77 +1,10 @@
-/* ------------TEMA2------------- */
-.tema2body {
-    background-image: url('https://res.cloudinary.com/dnieertcs/image/upload/v1542760720/fondo2.jpg');
-}
-.tema2SupBar {
-    background-color: black;
-}
-.tema2Img Img {
-    border: 1px solid black;
-}
-.tema2Menu a{
-    color: black;
-}
-.tema2Menu li{
-    font-family: auto;
-    border-radius: 6px;
-    background-color: darkgoldenrod;
-    border: 1px solid black;
-}
-.tema2Menu a:active {
-    text-decoration: none; 
-    color: blue;
-}
-.tema2Menu a:hover{
-    color: white;  
-    text-decoration: none;
-}
-.tema2contenedor {
-    background-color: burlywood;
-    border: solid black 1px;
-}
-/* .tema2ContComp {
-    background-color: darkgoldenrod;
-    border: solid black 1px;
-} */
-.tema2Titulo {
-    font-family: auto;
-}
-.tema2Pestañas {
-    font-family: auto;
-    background-color: darkgoldenrod;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-.tema2Pestañas a {
-    color: black;
-    margin-left: 1%;
-    margin-right: 1%;
-
-    font-size: 200%;
-
-    padding: 10px;
-}
-.tema2Pestañas a:hover {
-    color: white;
-    text-decoration: none;
-}
-.tema2Form {
-    font-family: auto;
-}
-.tema2Form input, select, textarea {
-    border: 1px solid black;
-}
-.tema2Form button {
-    background-color: white;
-    border: 1px solid black;
-}
-
 /* ------------DEFAULT------------- */
+
 .defaultbody {
     background-image: url('https://res.cloudinary.com/dnieertcs/image/upload/v1542662103/fondo1.jpg');
 }
 .defaultSupBar {
-    background-color: black;
+    background-color: whitesmoke;
 }
 .defaultImg Img {
     border: 1px solid cadetblue;

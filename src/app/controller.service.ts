@@ -13,7 +13,7 @@ export class ControllerService {
   }
 
   // host : string = 'localhost:51532';
-  host : string = '192.168.1.45';
+  host : string = 'servidor.yatelollevo.com';
   
   constructor(private http:HttpClient) { }
 
@@ -34,19 +34,19 @@ export class ControllerService {
   }
 
   updateAdminEmpresa(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updateAdminEmpresa', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updateAdminEmpresa', body, this.options);
   }
 
   updatePassAdminEmpresa(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updatePassAdminEmpresa', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updatePassAdminEmpresa', body, this.options);
   }
 
   updateUbicacionEmpresa(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updateUbicacionEmpresa', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updateUbicacionEmpresa', body, this.options);
   }
 
   updateEmpresa(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updateEmpresa', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updateEmpresa', body, this.options);
   }
 
   agregarCategoria(body:any){
@@ -54,7 +54,7 @@ export class ControllerService {
   }
 
   updateCategoria(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updateCategoria', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updateCategoria', body, this.options);
   }
 
   listCategoria(rut, skip, pagesize){
@@ -66,7 +66,7 @@ export class ControllerService {
   }
 
   updateEstado(body:any){
-    return this.http.put('http://'+this.host+'/api/Empresa/updateEstado', body, this.options);
+    return this.http.post('http://'+this.host+'/api/Empresa/updateEstado', body, this.options);
   }
 
   listEstados(rut, skip, pagesize){
@@ -95,6 +95,7 @@ export class ControllerService {
 
   inicio(rut : string, usuario : string){
     return this.http.get('http://'+this.host+'/api/Empresa/inicio?rut='+rut+'&usuario='+usuario);
+    // return this.http.get('http://localhost:51532/api/Client/ListarProductos?rut=123123123123&index=1&guidCategoria=39c4a48a-488a-4b51-b3e4-7e90b31b09bd');
   }
 
   desactivarUsuario(rut : string, usuario : string){
@@ -115,5 +116,13 @@ export class ControllerService {
   
   cambiarEstado(orden : string, estado : string){
     return this.http.post('http://'+this.host+'/api/Empresa/cambiarEstado?Orden='+orden+'&Estado='+estado, this.options);
+  }
+
+  agregarEstilo(body : any){
+    return this.http.post('http://'+this.host+'/api/Empresa/agregarEstilo', body, this.options);
+  }
+
+  getTemas(rut){
+    return this.http.get('http://'+this.host+'/api/Empresa/getTemas?rut='+rut);
   }
 }

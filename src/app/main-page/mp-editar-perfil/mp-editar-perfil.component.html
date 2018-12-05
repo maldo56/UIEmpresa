@@ -15,15 +15,14 @@
           <div id="GeneralForm">
             <label>Rubro: <select [(ngModel)]="general.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label> <br>
             <label>URL: <input name="ActualizarPerfilGeneral" placeholder="Campo requerido" type="text" [(ngModel)]="general.URLocator" /></label> <br>
-            <label>Tema: <select (change)="verTema()" [(ngModel)]="general.Tema"> 
-              <option value="default">Default</option> 
-              <option value="tema2">Tema2</option>
+            <label>Tema: <select (change)="verTema()" [(ngModel)]="auxTema"> 
+              <option *ngFor="let c of estilos; let i = index" [ngValue]="i">{{c.Nombre}}</option>
             </select></label> <br>
             <label>Descripcion: <textarea [(ngModel)]="general.Descripcion" rows="3" cols="25"></textarea></label>
           </div>
           <div id="divImgUp">
             <h1>Sube tu logo!:</h1>
-            <img src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #ImgTag/>
+            <img src="https://res.cloudinary.com/dnieertcs/image/upload/v1541794651/Empresa-Default.jpg" #ImgTag/>
             <input (change)="selectImg($event)" type="file" class="inptselect"/>
           </div>
       
@@ -73,9 +72,9 @@
         <div id="Ubicacionform">
           <label>Direccion: <input id="inpDir" type="text" [(ngModel)]="ubicacion.Direccion"/></label>
         </div>
-        <div id="Mapa">
+        <!-- <div id="Mapa">
           
-        </div>
+        </div> -->
       </div>
       <div id="UbicacionMag">
         <h1 *ngIf="UbicacionError==1">No se pudo conectar con el servidor</h1>

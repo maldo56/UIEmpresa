@@ -14,6 +14,7 @@ export class MpAvanzadoComponent implements OnInit {
   msgDesactUsuario : number = 0;
   msgDesactEmpresa : number = 0;
   msgActEmpresa : number = 0;
+  MsgEstilo : number = 0;
 
   admin = {
     Email : '',
@@ -22,6 +23,32 @@ export class MpAvanzadoComponent implements OnInit {
     Usuario : '',
     Clave : ''
   }
+
+  style = {
+    Rut : '',
+    Nombre : "",
+    color1 : "#000000",
+    color2 : "#000000",
+    color3 : "#000000",
+    letra : "auto",
+    colorTexto1 : "#000000",
+    colorTexto2 : "#000000",
+    fondo : ""
+  }
+
+  fuentes = [
+    "-webkit-body",
+    "auto",
+    "cursive",
+    "fantasy",
+    "inherit",
+    "initial",
+    "monospace",
+    "none",
+    "sans-serif",
+    "serif",
+    "unset"
+  ]
 
   auxPsw1 : '';
   auxPsw2 : '';
@@ -33,13 +60,26 @@ export class MpAvanzadoComponent implements OnInit {
       this.session = JSON.parse(sessionStorage.getItem('session'));
 
       this.admin.Rut = this.session.Rut;
+
+      // this.style.Nombre = this.session.style.Nombre;
+      if(this.session.style!=null){
+        this.style.color1 = this.session.style.color1;
+        this.style.color2 = this.session.style.color2;
+        this.style.color3 = this.session.style.color3;
+        this.style.colorTexto1 = this.session.style.colorTexto1;
+        this.style.colorTexto2 = this.session.style.colorTexto2;
+
+        this.style.fondo = this.session.style.fondo;
+        this.style.letra = this.session.style.letra;
+      }
+        
     }else{
       this.router.navigateByUrl('/LogIn');
     }
   }
 
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
 
   agregarUsuarioAdmin(){
@@ -195,13 +235,105 @@ export class MpAvanzadoComponent implements OnInit {
       this.pest = 1;
     }else if(cod=='p2'){
       this.pest = 2;
+    }else if(cod=='p3'){
+      this.pest = 3;
     }
   }
 
-  setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
+  styleLetra(){
+    document.getElementsByTagName('body')[0].style.fontFamily = this.style.letra;
+  }
+
+  styleFondo(event){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0){
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        let imagen = reader.result;
+        this.style.fondo = imagen.toString();
+
+        document.getElementsByTagName('body')[0].style.backgroundImage = 'url('+imagen.toString()+')';
+      }
+    }
+  }
+
+  styleColor1() {
+    document.getElementById('contenedor').style.backgroundColor = this.style.color1;
+  }
+
+  styleColor2(){
+    document.getElementById('contNav').style.backgroundColor = this.style.color2;
+    document.getElementById('pestañas').style.backgroundColor = this.style.color2;
+  }
+
+  styleColor3(){
+    document.getElementById('barracontainer').style.backgroundColor = this.style.color3;
+  }
+
+  stylecolorTexto1(){
+    console.log(this.style.colorTexto1);
+    document.getElementsByTagName('body')[0].style.color = this.style.colorTexto1;
+  }
+
+  stylecolorTexto2(){
+    var div = document.getElementById('pestañas');
+
+    var a = div.getElementsByTagName('a');
+
+    for(let x=0; x<a.length; x++){
+      a[x].style.color = this.style.colorTexto2;
+    }
+
+    var div2 = document.getElementById('Menu');
+
+    var a2 = div2.getElementsByTagName('a');
+
+    for(let x=0; x<a2.length; x++){
+      a2[x].style.color = this.style.colorTexto2;
+    }
+  }
+
+  revert(){
+    location.reload();
+  }
+
+  aceptarCambios() {
+    
+    this.style.Rut = this.session.Rut;
+
+    console.log(this.style);
+
+    if(this.style.Nombre == ''){
+      this.MsgEstilo = 3;
+
+      setTimeout (() => {
+        this.MsgEstilo = 0;
+      }, 5000);
+    }else{
+      this.app.agregarEstilo(this.style).subscribe(
+        data => {
+          console.log(data);
+          if(data==null){
+            this.MsgEstilo = 4;
+          }else{
+            this.MsgEstilo = 1;
+          }
+  
+          setTimeout (() => {
+            this.MsgEstilo = 0;
+          }, 5000);
+        },
+        error => {
+          console.log(error);
+          this.MsgEstilo = 2;
+  
+          setTimeout (() => {
+            this.MsgEstilo = 0;
+          }, 5000);
+        }
+      );
+    }
   }
 
   SHA256(s){

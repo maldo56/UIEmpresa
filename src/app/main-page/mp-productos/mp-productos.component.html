@@ -13,7 +13,7 @@
     <div id="Agregar" *ngIf="pest==1">
       <div id="AgregarCont">
         <label>Nombre: <input type="text" placeholder="Campo requerido" [(ngModel)]="producto.Nombre" /></label> <br>
-        <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"><option value="1">$</option><option value="2">U$S</option></select></div> </label> <br>
+        <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"><option value="1">$</option><!--<option value="2">U$S</option>--></select></div> </label> <br>
         <label>Volumen (m<SUP>3</SUP>): <input type="number" min="0" [(ngModel)]="producto.Volumen"/></label> <br>
         <label>Peso (kg): <input type="number" min="0" [(ngModel)]="producto.Peso"></label> <br>
         <label>Puntos para promo: <input type="number" [(ngModel)]="producto.Puntos" /></label> <br>
@@ -99,14 +99,11 @@
               <td><input type="text" [(ngModel)]="updateauxValue" placeholder="Valor nuevo atributo" />
               <button (click)="updateAddAtributte()">+</button></td></tr>
           </table>
-
-          <div> 
-            
+          <div id="MsgModificarProd">
+            <h2 *ngIf="ModificarMsg==1">Producto modificado con exito</h2>
+            <h1 *ngIf="ModificarMsg==2">Error al conectarse con el servidor</h1>
+            <h1 *ngIf="ModificarMsg==3">No se pudo modificar el producto</h1>
           </div>
-          <table>
-          
-          </table>
-
         </div>
         <div id="btnModificarCont">
           <button (click)="actualizarProducto()">Aceptar</button>

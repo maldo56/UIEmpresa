@@ -22,6 +22,7 @@ export class MpProductosComponent implements OnInit {
   page : number = 0;
   pest : number = 1;
   AgregarMsg : number = 0;
+  ModificarMsg : number = 0;
   siguiente : boolean = true;
   anterior : boolean = false;
   selected : boolean = false;
@@ -85,7 +86,7 @@ export class MpProductosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setStyle(this.session.Tema);
+    
   }
 
   agregarProducto() {
@@ -243,7 +244,7 @@ export class MpProductosComponent implements OnInit {
     }else if(cod=='p2'){
       this.app.listarProductos(this.session.Rut).subscribe(
         data => {
-          console.log(data);
+          console.log("Productos: ", data);
           this.productosList = data;
         },
         error => {
@@ -266,6 +267,9 @@ export class MpProductosComponent implements OnInit {
     this.producto.Categorias = new Array<OpcionalAtributte>();
     this.producto.Opcionales = new Array<OpcionalAtributte>();
     this.producto.Imagenes = new Array<string>();
+    this.producto.Puntos = 0;
+    this.auxKey = '';
+    this.auxValue = '';
   }
 
   cargarUpdate(i){
@@ -325,16 +329,20 @@ export class MpProductosComponent implements OnInit {
     this.app.agregarProducto(productoUp).subscribe(
       data => {
         console.log(data);
+        if(data){
+          this.ModificarMsg = 1;
+        }else{
+          this.ModificarMsg = 3;
+        }
+        
+        setTimeout (() => {
+          this.ModificarMsg = 0;
+        }, 5000);
       },
       error => {
         console.log(error);
+        this.ModificarMsg = 2;
       }
     );
-  }
-
-  setStyle(style){
-    document.getElementById('titulo').setAttribute('class', style+'Titulo');
-    document.getElementById('pestañas').setAttribute('class', style+'Pestañas');
-    document.getElementById('ContenedorForm').setAttribute('class', style+'Form');
   }
 }
