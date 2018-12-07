@@ -12,8 +12,8 @@ export class ControllerService {
     }
   }
 
-  // host : string = 'localhost:51532';
-  host : string = 'servidor.yatelollevo.com';
+  host : string = '172.16.125.244';
+  // host : string = 'servidor.yatelollevo.com';
   
   constructor(private http:HttpClient) { }
 

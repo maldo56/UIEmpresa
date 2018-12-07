@@ -40,7 +40,7 @@ export class MpProductosComponent implements OnInit {
     Rut : '',
     Nombre : '',
     Precio : 0,
-    Moneda : 1,
+    Moneda : 2,
     Volumen : 0,
     Peso : 0,
     Puntos : 0,
@@ -56,6 +56,7 @@ export class MpProductosComponent implements OnInit {
   productosList : any;
   auxAttObligatorios : any;
   auxAttOpcionales : any;
+  modifactivo : boolean = true;
 
   session : any;
 
@@ -279,6 +280,7 @@ export class MpProductosComponent implements OnInit {
     var keys = Object.keys(this.productosList[i].PropProducto);
     this.updateObjectId = this.productosList[i].ObjectId;
 
+    this.modifactivo = this.productosList[i].Activo;
     console.log(this.updateObjectId);
 
     for(let x=0; x<5; x++){
@@ -313,6 +315,7 @@ export class MpProductosComponent implements OnInit {
     var productoUp = { 
       ObjectId : this.updateObjectId,
       Rut : this.session.Rut,
+      Activo : this.modifactivo,
       Nombre : this.auxAttObligatorios[0].value,
       Precio : this.auxAttObligatorios[1].value,
       Moneda : 0,

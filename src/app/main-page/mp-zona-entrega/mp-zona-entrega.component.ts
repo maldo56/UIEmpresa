@@ -67,7 +67,7 @@ export class MpZonaEntregaComponent implements OnInit {
   }
   
   ngOnInit() {
-    
+    zonas = [];
   }
 
   ngAfterViewInit(): void {
@@ -207,5 +207,7 @@ export class MpZonaEntregaComponent implements OnInit {
         console.log(error);
       }
     );
+
+    zonas = [];
   }
 }

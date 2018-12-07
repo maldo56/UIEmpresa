@@ -6,14 +6,13 @@
     <div id="pestañas" class="coso">
       <a (click)="changeP('p1');">Agregar</a>
       <a (click)="changeP('p2');">Modificar</a>
-      <a (click)="changeP('p3');">Eliminar</a>
     </div>
   </div>
   <div id="ContenedorForm">
     <div id="Agregar" *ngIf="pest==1">
       <div id="AgregarCont">
         <label>Nombre: <input type="text" placeholder="Campo requerido" [(ngModel)]="producto.Nombre" /></label> <br>
-        <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"><option value="1">$</option><!--<option value="2">U$S</option>--></select></div> </label> <br>
+        <label>Precio: <div id="divPrecioFrom"><input type="number" min="0" [(ngModel)]="producto.Precio"/> <select [(ngModel)]="producto.Moneda"> <!--- <option value="1">$</option> --> <option value="2">U$S</option> </select></div> </label> <br>
         <label>Volumen (m<SUP>3</SUP>): <input type="number" min="0" [(ngModel)]="producto.Volumen"/></label> <br>
         <label>Peso (kg): <input type="number" min="0" [(ngModel)]="producto.Peso"></label> <br>
         <label>Puntos para promo: <input type="number" [(ngModel)]="producto.Puntos" /></label> <br>
@@ -89,9 +88,13 @@
       <div id="ListarDatosCont" *ngIf="selected">
         <div id="ListarDatos">
           <table>
-            <tr *ngFor="let t of auxAttObligatorios; let i = index"> 
+            <tr *ngFor="let t of auxAttObligatorios; let i = index">
               <td> <label> {{t.key}} </label> </td> 
               <td> <input type="text" [(ngModel)]="auxAttObligatorios[i].value"/> </td> </tr>
+            <tr> 
+              <td> <label>Activo</label> </td>
+              <td> <input type="checkbox" [(ngModel)]="modifactivo" /> </td>
+            </tr>
             <tr *ngFor="let t of auxAttOpcionales; let i = index">
               <td> <input type="text" [(ngModel)]="auxAttOpcionales[i].key" /> </td> 
               <td> <input type="text" [(ngModel)]="auxAttOpcionales[i].value" /> </td> </tr>
