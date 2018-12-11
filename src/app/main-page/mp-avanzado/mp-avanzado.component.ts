@@ -9,7 +9,7 @@ import { ControllerService } from 'src/app/controller.service';
 })
 export class MpAvanzadoComponent implements OnInit {
 
-  pest : number = 1;
+  pest : number = 3;
   msgAdmin : number = 0;
   msgDesactUsuario : number = 0;
   msgDesactEmpresa : number = 0;
@@ -29,7 +29,6 @@ export class MpAvanzadoComponent implements OnInit {
     Nombre : "",
     color1 : "#000000",
     color2 : "#000000",
-    color3 : "#000000",
     letra : "auto",
     colorTexto1 : "#000000",
     colorTexto2 : "#000000",
@@ -65,7 +64,6 @@ export class MpAvanzadoComponent implements OnInit {
       if(this.session.style!=null){
         this.style.color1 = this.session.style.color1;
         this.style.color2 = this.session.style.color2;
-        this.style.color3 = this.session.style.color3;
         this.style.colorTexto1 = this.session.style.colorTexto1;
         this.style.colorTexto2 = this.session.style.colorTexto2;
 
@@ -259,21 +257,31 @@ export class MpAvanzadoComponent implements OnInit {
   }
 
   styleColor1() {
-    document.getElementById('contenedor').style.backgroundColor = this.style.color1;
+    document.getElementById('titulo').style.backgroundColor = this.style.color1;
+    document.getElementById('contInfo').style.backgroundColor = this.style.color1;
   }
 
   styleColor2(){
-    document.getElementById('contNav').style.backgroundColor = this.style.color2;
-    document.getElementById('pestañas').style.backgroundColor = this.style.color2;
-  }
+    // document.getElementById('contNav').style.backgroundColor = this.style.color2;
+    // document.getElementById('pestañas').style.backgroundColor = this.style.color2;
 
-  styleColor3(){
-    document.getElementById('barracontainer').style.backgroundColor = this.style.color3;
+    var pest = document.getElementById('pestañas').getElementsByTagName('a');
+
+    for(let x=0; x<pest.length; x++){
+      pest[x].style.backgroundColor = this.style.color2;
+    }
+
+    var buttons = document.getElementById('contComp').getElementsByTagName('button');
+
+    for(let x=0; x<buttons.length; x++){
+      buttons[x].style.backgroundColor = this.style.color2;
+    }
   }
 
   stylecolorTexto1(){
     console.log(this.style.colorTexto1);
     document.getElementsByTagName('body')[0].style.color = this.style.colorTexto1;
+    document.getElementById('contInfo').style.color = this.style.colorTexto1;
   }
 
   stylecolorTexto2(){
@@ -291,6 +299,12 @@ export class MpAvanzadoComponent implements OnInit {
 
     for(let x=0; x<a2.length; x++){
       a2[x].style.color = this.style.colorTexto2;
+    }
+
+    var buttons = document.getElementById('contComp').getElementsByTagName('button');
+
+    for(let x=0; x<buttons.length; x++){
+      buttons[x].style.color = this.style.colorTexto2;
     }
   }
 

@@ -2,7 +2,7 @@
   <div id="contNav">
     <div id="DatosPerfil">
       <div id="divImg">
-        <img id="mainPageImg" src=""/><br>
+        <img id="mainPageImg" src=""/>
       </div>
       <div id="contInfo">
         <label>RUT: {{session.Rut}}</label> <br>
@@ -11,6 +11,9 @@
       </div>
     </div>
     <div id="contMenu">
+      <div id="BtnMenu" (click)="hamburguesa()">
+
+      </div>
       <ul id="Menu">
         <li><a routerLink="/mainPage/Inicio">Inicio</a></li>
         <li><a routerLink="/mainPage/Ordenes">Ordenes</a></li>
@@ -21,7 +24,7 @@
         <li><a routerLink="/mainPage/Productos">Productos</a></li>
         <li><a routerLink="/mainPage/ZonasEntrega">Zona de entrega</a></li>
         <li><a routerLink="/mainPage/Avanzado">Avanzado</a></li>
-        <li style="background-color: darkred;"><a (click)="LogOut()" style="color: white;">Cerrar sesion</a></li>
+        <li style="background-color: brown;"><a routerLink="" (click)="LogOut()" style="color: white;">Cerrar sesion</a></li>
       </ul>
     </div>
   </div>

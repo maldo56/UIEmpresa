@@ -15,13 +15,18 @@
     height: 100%;
 
     padding-left: 5%;
+
+    background-color: cadetblue;
+    border-radius: 10px;
+
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
     /* border-bottom: 1px solid black; */
 }
 
 #titulo h2 {
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 0;
+    margin: 0;
     font-size: 300%;
 }
 
@@ -30,12 +35,33 @@
     height: 100%;
     padding-left: 6%;
 
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 #Contreportes {
     margin-left: 5%;
     font-size: 25px;
-    margin-top: 5%;
     line-height: 55px;
+}
+
+@media screen and (max-width: 500px) {
+    #container {
+        width: 94%;
+        margin-left: 3%;
+    }
+
+    #titulo h2 {
+        font-size: 200%;
+    }
+
+    #contBarSup {
+        height: 10px;
+    }
+
+    #Contreportes {
+        margin: 0;
+
+        font-size: 17px;
+        line-height: 40px;
+    }
 }

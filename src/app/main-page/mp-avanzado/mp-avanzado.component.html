@@ -73,7 +73,7 @@
         <label>Nombre: </label> <input type="text" [(ngModel)]="style.Nombre"/> <br>
         <label>Color primario: </label> <input type="color" (change)="styleColor1()" [(ngModel)]="style.color1"/> <br>
         <label>Color secundario: </label> <input type="color" (change)="styleColor2()" [(ngModel)]="style.color2"/> <br>
-        <label>Color terciario: </label> <input type="color" (change)="styleColor3()" [(ngModel)]="style.color3"/> <br>
+        <!-- <label>Color terciario: </label> <input type="color" (change)="styleColor3()" [(ngModel)]="style.color3"/> <br> -->
         <label>Tipo de letra: </label> <select [(ngModel)]="style.letra" (change)="styleLetra()"> <option *ngFor="let x of fuentes">{{x}}</option> </select> <br>
         <label>Color texto 1: </label> <input type="color" (change)="stylecolorTexto1()" [(ngModel)]="style.colorTexto1"/> <br>
         <label>Color texto 2: </label> <input type="color" (change)="stylecolorTexto2()" [(ngModel)]="style.colorTexto2"/> <br>

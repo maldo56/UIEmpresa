@@ -9,13 +9,14 @@
       <label>URL: <input placeholder="Campo requerido" [(ngModel)]="formEmp.URLocator" type="text"/></label>
       <label>Rubro: <select [(ngModel)]="formEmp.NombreRubro"> <option *ngFor="let c of rubros" [ngValue]="c.Nombre">{{c.Nombre}}</option> </select></label>
       <label>Direccion: <input id="form1Direccion" type="text" autocorrect="off" autocapitalize="off" spellcheck="off"/></label>
+      <label>Cant. U$S por punto: <input type="number" [(ngModel)]="formEmp.dineroxPunto"/> </label>
       <label>Descripcion: <textarea [(ngModel)]="formEmp.Descripcion" rows="3" cols="25"></textarea></label>
     </div>
 
     <div id="formdiv2">
       <div id="divimg">
         <label>Sube tu logo!:</label>
-        <img id="Image" src="https://image.freepik.com/vector-gratis/logotipo-calavera-sobre-un-fondo-azul_1306-3.jpg" #Img/>
+        <img id="Image" src="https://res.cloudinary.com/dnieertcs/image/upload/v1541794651/Empresa-Default.jpg" #Img/>
       </div>
       <div id="divinpfile">
         <label for="file">Elige una imagen</label>

@@ -6,7 +6,7 @@
     height: 40px;
     width: 100%;
 
-    margin-bottom: 1%;
+    margin-top: 2%;
     /* border: 1px solid black; */
 }
 
@@ -15,41 +15,54 @@
     height: 100%;
 
     padding-left: 5%;
+
+    background-color: cadetblue;
+    border-radius: 10px;
+
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
     /* border-bottom: 1px solid black; */
 }
 
 #titulo h2 {
-    margin-left: 2%;
-    margin-top: 1%;
-    margin-bottom: 0;
+    margin: 0;
     font-size: 300%;
 }
 
 #pestañas {
     width: 100%;
     height: 100%;
+    margin-top: 1%;
     padding-left: 6%;
 
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 #pestañas a {
-    color: black;
+    color: white;
     margin-left: 1%;
     margin-right: 1%;
 
     font-size: 200%;
 
-    padding: 10px;
+    background-color: brown;
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #pestañas a:hover {
-    color: brown;
+    color: white;
+    background-color: chocolate;
     text-decoration: none;
 }
 
 #EPGeneral {
     width: 100%;
     padding-left: 5%;
+    margin-top: 2%;
 }
 
 #GeneralDiv1 {
@@ -78,6 +91,8 @@
     width: 50%;
     float: right;
     height: 50%;
+
+    border-radius: 5px;
 }
 
 #GeneralForm select{
@@ -86,6 +101,8 @@
     width: 50%;
     float: right;
     height: 50%;
+
+    border-radius: 5px;
 }
 
 #GeneralForm textarea{
@@ -93,6 +110,8 @@
     margin-right: 5%;
     float: right;
     width: 50%;
+
+    border-radius: 5px;
 }
 
 #divImgUp {
@@ -116,12 +135,15 @@
 }
 
 #divImgUp input {
-    width: 100%;
+    width: 50%;
 
     margin-top: 5%;
     margin-left: 47%;
 
     border: 0;
+    color: white;
+    background-color: cadetblue;
+    border-radius: 5px;
 }
 
 #GeneralDiv2 {
@@ -131,10 +153,14 @@
 }
 
 #GeneralDiv2 button {
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 50px;
     margin-right: 3%;
     float: right;
+
+    color: white;
+    background-color: brown;
+    border-radius: 5px;
 }
 
 #EPUsuario {

@@ -1,10 +1,15 @@
 /* ------------DEFAULT------------- */
 
 .defaultbody {
-    background-image: url('https://res.cloudinary.com/dnieertcs/image/upload/v1542662103/fondo1.jpg');
+    background: linear-gradient(rgba(255,255,255,.4), 
+        rgba(255, 255, 255, 0.4)),
+        url(https://img.elcomercio.pe/files/ec_article_multimedia_gallery/uploads/2018/01/11/5a57d5f5ba6ac.jpeg);
+    
+    background-size: cover;
+    font-family: cursive;
 }
 .defaultSupBar {
-    background-color: whitesmoke;
+    background-color: white;
 }
 .defaultImg Img {
     border: 1px solid cadetblue;
@@ -13,19 +18,25 @@
     color: black;
 }
 .defaultMenu li{
-    font-family: cursive;
-    border: 1px solid cadetblue;
+    /* font-family: cursive; */
+    /* border: 1px solid cadetblue; */
 }
 .defaultMenu a:active {
     text-decoration: none; 
-    color: blue;
+    color: white;
 }
 .defaultMenu a:hover{
-    color: brown;  
+    background-color: chocolate;
+    color: white; 
+    text-decoration: none;
+}
+.defaultMenu li:hover{
+    background-color: chocolate;
+    color: white; 
     text-decoration: none;
 }
 .defaultcontenedor {
-    background-color: whitesmoke;
+    background-color: white;
     border: solid black 1px;
 }
 .defaultTitulo {
@@ -33,7 +44,7 @@
 }
 .defaultPestañas {
     font-family: cursive;
-    border: 1px solid cadetblue;
+    /* border: 1px solid cadetblue; */
 }
 .defaultPestañas a {
     color: black;
@@ -52,9 +63,9 @@
     font-family: cursive;
 }
 .defaultForm input, select, textarea {
-    border: 1px solid cadetblue;
+    /* border: 1px solid cadetblue; */
 }
 .defaultForm button {
-    background-color: white;
-    border: 1px solid cadetblue;
+    /* background-color: white;
+    border: 1px solid cadetblue; */
 }

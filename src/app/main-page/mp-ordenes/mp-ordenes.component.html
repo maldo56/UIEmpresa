@@ -12,7 +12,7 @@
     <div id="ContenedorForm">
       <div id="ContOrdenes">
         <table>
-          <tr><th>Fecha/hora</th> <th>Contacto</th> <th>Precio</th> <th>Estado</th> <th>Comision</th> <th>Productos</th> </tr>
+          <tr class="tableHead"><th>Fecha/hora</th> <th>Contacto</th> <th>Precio</th> <th>Estado</th> <th>Comision</th> <th>Productos</th> </tr>
 
           <tr *ngFor="let x of ordenes; let i = index" (click)="cargarOrden(i)">
             <td>{{x.stringDate}}</td>

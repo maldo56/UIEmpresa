@@ -52,13 +52,27 @@ export class MainPageComponent implements OnInit {
       document.getElementById('contenedor').setAttribute('class', 'defaultcontenedor');
     }else{
       document.getElementsByTagName('body')[0].style.fontFamily = this.session.style.letra;
+      
       document.getElementsByTagName('body')[0].style.backgroundImage = 'url('+this.session.style.fondo+')';
-      document.getElementById('contenedor').style.backgroundColor = this.session.style.color1;
-      document.getElementById('contNav').style.backgroundColor = this.session.style.color2;
-      document.getElementById('pestañas').style.backgroundColor = this.session.style.color2;
-      document.getElementById('barracontainer').style.backgroundColor = this.session.style.color3;
-      document.getElementsByTagName('body')[0].style.color = this.session.style.colorTexto1;
+      
+      document.getElementById('titulo').style.backgroundColor = this.session.style.color1;
+      document.getElementById('contInfo').style.backgroundColor = this.session.style.color1;
+// -------------------------------------------------------------------------------------------------------
+      var pest = document.getElementById('pestañas').getElementsByTagName('a');
 
+      for(let x=0; x<pest.length; x++){
+        pest[x].style.backgroundColor = this.session.style.color2;
+      }
+
+      var buttons = document.getElementById('contComp').getElementsByTagName('button');
+
+      for(let x=0; x<buttons.length; x++){
+        buttons[x].style.backgroundColor = this.session.style.color2;
+      }
+// -------------------------------------------------------------------------------------------------------
+      document.getElementsByTagName('body')[0].style.color = this.session.style.colorTexto1;
+      document.getElementById('contInfo').style.color = this.session.style.colorTexto1;
+// -------------------------------------------------------------------------------------------------------
       var div = document.getElementById('pestañas');
 
       var a = div.getElementsByTagName('a');
@@ -75,7 +89,22 @@ export class MainPageComponent implements OnInit {
         a2[x].style.color = this.session.style.colorTexto2;
       }
 
+      var buttons = document.getElementById('contComp').getElementsByTagName('button');
+
+      for(let x=0; x<buttons.length; x++){
+        buttons[x].style.color = this.session.style.colorTexto2;
+      }
     }
     
+  }
+
+  hamburguesa(){
+    var menu = document.getElementById('Menu');
+
+    if(menu.style.display == 'none'){
+      menu.style.display = 'block';
+    }else{
+      menu.style.display = 'none';
+    }
   }
 }

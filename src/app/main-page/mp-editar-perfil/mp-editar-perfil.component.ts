@@ -499,28 +499,48 @@ export class MpEditarPerfilComponent implements OnInit {
   verTema(){
     
     document.getElementsByTagName('body')[0].style.fontFamily = this.estilos[this.auxTema].letra;
-    document.getElementsByTagName('body')[0].style.backgroundImage = 'url('+this.estilos[this.auxTema].fondo+')';
-    document.getElementById('contenedor').style.backgroundColor = this.estilos[this.auxTema].color1;
-    document.getElementById('contNav').style.backgroundColor = this.estilos[this.auxTema].color2;
-    document.getElementById('pestañas').style.backgroundColor = this.estilos[this.auxTema].color2;
-    document.getElementById('barracontainer').style.backgroundColor = this.estilos[this.auxTema].color3;
-    document.getElementsByTagName('body')[0].style.color = this.estilos[this.auxTema].colorTexto1;
+      
+      document.getElementsByTagName('body')[0].style.backgroundImage = 'url('+this.estilos[this.auxTema].fondo+')';
+      
+      document.getElementById('titulo').style.backgroundColor = this.estilos[this.auxTema].color1;
+      document.getElementById('contInfo').style.backgroundColor = this.estilos[this.auxTema].color1;
+// -------------------------------------------------------------------------------------------------------
+      var pest = document.getElementById('pestañas').getElementsByTagName('a');
 
-    var div = document.getElementById('pestañas');
+      for(let x=0; x<pest.length; x++){
+        pest[x].style.backgroundColor = this.estilos[this.auxTema].color2;
+      }
 
-    var a = div.getElementsByTagName('a');
+      var buttons = document.getElementById('contComp').getElementsByTagName('button');
 
-    for(let x=0; x<a.length; x++){
-      a[x].style.color = this.estilos[this.auxTema].colorTexto2;
-    }
+      for(let x=0; x<buttons.length; x++){
+        buttons[x].style.backgroundColor = this.estilos[this.auxTema].color2;
+      }
+// -------------------------------------------------------------------------------------------------------
+      document.getElementsByTagName('body')[0].style.color = this.estilos[this.auxTema].colorTexto1;
+      document.getElementById('contInfo').style.color = this.estilos[this.auxTema].colorTexto1;
+// -------------------------------------------------------------------------------------------------------
+      var div = document.getElementById('pestañas');
 
-    var div2 = document.getElementById('Menu');
+      var a = div.getElementsByTagName('a');
 
-    var a2 = div2.getElementsByTagName('a');
+      for(let x=0; x<a.length; x++){
+        a[x].style.color = this.estilos[this.auxTema].colorTexto2;
+      }
 
-    for(let x=0; x<a2.length; x++){
-      a2[x].style.color = this.estilos[this.auxTema].colorTexto2;
-    }
+      var div2 = document.getElementById('Menu');
+
+      var a2 = div2.getElementsByTagName('a');
+
+      for(let x=0; x<a2.length; x++){
+        a2[x].style.color = this.estilos[this.auxTema].colorTexto2;
+      }
+
+      var buttons = document.getElementById('contComp').getElementsByTagName('button');
+
+      for(let x=0; x<buttons.length; x++){
+        buttons[x].style.color = this.estilos[this.auxTema].colorTexto2;
+      }
     
   }
 }

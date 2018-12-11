@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit {
     Logo: '',
     lat: '',
     lng: '',
-    Tema: ''
+    Tema: '',
+    dineroxPunto: 0
   }
 
   auxPass:'';
